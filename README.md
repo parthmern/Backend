@@ -33,9 +33,51 @@
 ➔ HTTPS data packages are also captured by anyone but the data are encrypted so there is no meaning of this <br/>
 
 ## 💜 Ports 
+➔ server par commumication k liye port hote hai - port par server listen karta hai <br/>
 ➔ ports are just numbers <br/>
 ➔ [chatGpt](https://chat.openai.com/share/c674fb10-b527-46ef-9d8a-1429e97c6620) <br/>
 
+➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖
+➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖
+
+## 🧡 server create using Express.js
+➔ create folder then go into this folder using terminal <br/>
+➔ `npm init` or `npm init -y` to create package.json file <br/>
+➔ `npm i express` to create nodeModule file <br/>
+➔ then create `server.js` file
+
+```
+// 📂 server.js
+
+// 1) server instantiate
+const express = require('express');
+const app = express();
+
+// 2) server live
+
+app.listen(3000, ()=>{
+    console.log("server started at port number 3000");
+})
+
+// here 3000 is port number from where our server can do communication or listen
+
+```
+
+➔ Routes
+
+```
+// here "/" is route
+
+app.get('/',(request,response)=>{
+    response.send("Hello jee, kaise ho");
+})
 
 
+app.post('/api/cars', (request,response)=>{
+    const {name, brand} = request.body;
+    console.log(name);
+    console.log(brand);
+    response.send("car submitted successfully");
+})
 
+```
