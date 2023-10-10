@@ -66,6 +66,9 @@ app.listen(3000, ()=>{
 ➔ Routes
 
 ```
+const bodyParser = require('body-parser');   // used to parese req.body in express -> PUT or POST
+app.use(bodyParser.json() );   // specifically parse JSON data & add it to the request.Body object
+
 // here "/" is route
 
 app.get('/',(request,response)=>{
@@ -81,3 +84,23 @@ app.post('/api/cars', (request,response)=>{
 })
 
 ```
+
+➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖
+
+## 💛 MONGOOSE
+
+➔ connects mongoDB database and expressJs server using MONGOOSE ( ODM library - object document model )
+➔ in expressJs server data treats as object and in mongo data treat as document
+
+```
+const mongoose = require('mongoose');
+mongoose.connect('mongodb://127.0.0.1:27017/testDb',{
+    useNewurlParser : true,
+    useUnifiedTopology : true
+})
+.then(()=>{console.log("connection successfull between express server with mongoDB")})
+.catch(()=>{console.log("error")})
+
+```
+
+
