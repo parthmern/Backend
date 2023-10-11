@@ -91,6 +91,7 @@ app.post('/api/cars', (request,response)=>{
 
 ➔ connects mongoDB database and expressJs server using MONGOOSE ( ODM library - object document model )  <br/>
 ➔ in expressJs server data treats as object and in mongo data treat as document  <br/>
+➔ `npm i mongoose` install
 
 ```
 const mongoose = require('mongoose');
@@ -105,4 +106,10 @@ mongoose.connect('mongodb://127.0.0.1:27017/testDb',{
 // here testDb is db name that we have created in the mongodb compass
 ```
 
+### 🔥 Make automatic run using NODEMON
+➔ [chatgpt](https://chat.openai.com/share/91fa8e2e-63aa-4f63-a0da-38b50898e9ea)
+
+➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖
+
+## 
 
