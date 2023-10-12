@@ -163,3 +163,32 @@ console.log(module.sum(4,5)); // OP => 9
 
 ➔ [Es6 type import export](https://chat.openai.com/share/796432e7-43ce-4ca8-aa4a-710d3e98cff8)
 
+## 💜 NPM 
+➔ create folder then go into this folder using terminal <br/>
+➔ `npm init` or `npm init -y` to create package.json file ( is a configuration file for node projects which has scripts, dependencies, devDependencies etc ) <br/>
+<br/>
+➔ if there is not package.json file available then you cannot use `npm install anything` to install any online modules available for node on NPM repository online. <br/>
+➔ `npm i express` to add express and nodeModule files <br/>
+➔ after doing this you can see express version in "package.json" file in *dependencies* <br/>
+<br/>
+🔥 **Dev dependancy** - ye sirf development time k liye hai -- ye server k main code se realted nhii hai <br/>
+➔ ex. NODEMON is a package for running node server and track live changes to re-start again. <br/>
+➔ `npm install nodemon --save-dev` installation of devdependency therefore --save-dev <br/>
+```
+// 📂 package.json
+...
+
+  "scripts": {
+    "start": "nodemon index.js",
+    "dev": "nodemon index.js"
+  },
+
+// here index.js means mainFileName.js
+
+...
+```
+➔ `scripts` inside package.json can be used like `npm run <script-name>` e.g `npm run dev`. Only for `npm start` you can avoid run.<br/>
+<br/>
+
+➔ use `npm install -g nodemon` to install packages globally ( --global or -g ) on your system. Not just in the project but useful all over your system.<br/>
+➔ How to uninstall packages like `npm un <package-name>` or `npm uninstall <package-name>`  <br/>
