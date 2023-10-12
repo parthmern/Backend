@@ -110,6 +110,56 @@ mongoose.connect('mongodb://127.0.0.1:27017/testDb',{
 ➔ [chatgpt](https://chat.openai.com/share/91fa8e2e-63aa-4f63-a0da-38b50898e9ea)
 
 ➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖
+➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖
+➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖
 
-## 
+## 💛 What is NODE ?
+➔ runtime + apis  <br/>
+➔ runtime environment for Js + apis <br/>  ➔ asynchronous <br/> 
+➔ non blocking I/O  <br/>  <br/>
+ 
+➔ Is it web-server? -- No but you can make it using ExpressJs   <br/>
+➔ Why Node is used in webserver? -- Heavy I/O + small code footprint  <br/>
+
+## 🧡 Module System in node
+➔ Running any JavaScript file from node using `node filename.js`  <br/>
+➔ Modules are basic containers or functions in Node/JavaScript system. 1 file can be one module in Javascript.<br/>
+
+➔ export 
+```
+// 📂 module.js
+
+function sum (a,b){
+    return a + b ;
+}
+
+exports.sum = sum ;
+
+//----------------------------
+// other way
+
+exports.sum = (a,b) =>{
+    return a + b ;
+}
+
+
+
+// "exports" ek type ka module he hai like OBJECT
+// and "exports.sum" kar ke hum export ke andar sum ki property bana rahe hai
+// and then "=sum" means uske andar sum function ko rakh rahe hai
+```
+<br/>
+ 
+➔ import 
+```
+// 📂 index.js
+
+const module = require("./module");  // way of import 
+
+console.log(module);    // OP => { sum: [Function: sum] }
+
+console.log(module.sum(4,5)); // OP => 9
+```
+
+➔ [Es6 type import export](https://chat.openai.com/share/796432e7-43ce-4ca8-aa4a-710d3e98cff8)
 
