@@ -113,6 +113,8 @@ mongoose.connect('mongodb://127.0.0.1:27017/testDb',{
 ➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖
 ➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖
 
+# 🌈 Chapter 1 - Introduction to Node, NPM, Package.JSON
+
 ## 💛 What is NODE ?
 ➔ runtime + apis  <br/>
 ➔ runtime environment for Js + apis <br/>  ➔ asynchronous <br/> 
@@ -192,3 +194,30 @@ console.log(module.sum(4,5)); // OP => 9
 
 ➔ use `npm install -g nodemon` to install packages globally ( --global or -g ) on your system. Not just in the project but useful all over your system.<br/>
 ➔ How to uninstall packages like `npm un <package-name>` or `npm uninstall <package-name>`  <br/>
+
+➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖ <br/>
+➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖ <br/>
+<br/>
+
+# 🌈 Chapter 2 - Server Concepts with Node - http module
+
+## 🧡 Client server
+<img src="https://media.licdn.com/dms/image/C5112AQFLhgv0KmXgWQ/article-cover_image-shrink_720_1280/0/1564214969082?e=2147483647&v=beta&t=GGVxl-frWfy6mwFBC9kAkZJIr5-S0A1Fy1mpNKjP784" width="600px" height="300px" />
+
+➔ *here client send REQUEST(req) to the server and server gives RESPONSE(res)* <br/>
+➔ *but server can only understand HTTP protocol as language* <br/>
+
+🔥 **HTTP requests**  <br/>
+➔ Type of Request :: GET, POST, PUT, DELETE etc.  <br/>
+➔ Headers :: Meta data sent by your browser like browser name, cookies, authentication information etc.  <br/>
+➔ Query Parameters (url?`name=john`) :: This is used in GET requests to send data to server  <br/>
+➔ Route Params (url/`john`)  <br/>
+➔ Body data :: This is used in POST and other requests to send data to server  <br/>
+
+🔥 **HTTP responses** <br/>
+➔ Response status code :: (200, 404, 403, 502) here `2XX - success`, `3XX - redirections`, `4XX - client error`, `5XX - server error`  <br/>
+➔ Response body :: Actual data to be sent to client : HTML, JS, JSON, CSS, Image etc. <br/>
+➔ Headers :: Meta data sent by your server back to client like server name, content size, last updated time etc. <br/>
+
+
+
