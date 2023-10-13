@@ -227,3 +227,83 @@ console.log(module.sum(4,5)); // OP => 9
 ➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖ <br/>
 ➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖ <br/>
 <br/>
+
+# 🌈 Chapter 3 - Express JS
+➔ ExpressJS is de-facto Node framework - and used in most Node applications which are used as web server.<br/>
+➔ You can install express `npm install express` <br/>
+<br/>
+
+➔ about FS [what is filesystem](https://chat.openai.com/share/edfba47e-cb29-4e8b-9c79-9b692d895cde) <br/>
+
+```
+const fs = require('fs');
+
+const index = fs.readFileSync('anyFile.`xtension`', 'utf-8');
+console.log('File contents:', index);
+
+// ==== OR ====
+
+try {
+  const index = fs.readFileSync('anyFile.`xtension`', 'utf-8');
+  console.log('File contents:', index);
+} catch (error) {
+  console.error('Error reading the file:', error);
+}
+
+```
+
+➔ create expres server [chatGpt](https://chat.openai.com/share/2a18d381-58b8-4c64-9d77-71d5e01b3f03) 
+
+```
+const express = require("express");
+const server = express();
+
+server.listen(3030,()=>{
+  console.log("server start on 3030 port");
+});
+```
+
+➔ Response methods (res is our response objects)
+```
+server.get('/demo', (req, res) => {
+
+    //res.send('Hello, Express as simple msg');     //  res.send()===> for sending html or txt
+
+    //res.send("<h1>hello in html</h1>");           //  res.send()===> for sending html or txt
+
+    //res.sendFile("/Usera/parth/desktop/03-express-js/index.html");      //  res.sendFile() ==> for sending File
+
+    //res.json(product);       // res.json ==> for sending JSON
+
+    //res.sendStatus(404);     // res.sendStatus(xxx) - for sending HTTP status only
+
+    res.send("hello with status")     // sending multiple ( file + statusCode )
+      .status(200); 
+});
+
+
+// res.send we can see on our webpage with url "/"
+```
+
+➔ HTTP Request Types we generally use :
+```
+server.get("/",(req, res)=>{
+  res.json({type:"GET"});
+})
+
+server.post("/",(req, res)=>{
+  res.json({type:"POST"});
+})
+
+server.put("/",(req, res)=>{
+  res.json({type:"PUT"});
+})
+
+server.delete("/",(req, res)=>{
+  res.json({type:"DELETE"});
+})
+
+server.patch("/",(req, res)=>{
+  res.json({type:"PATCH"});
+})
+```
