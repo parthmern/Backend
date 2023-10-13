@@ -219,5 +219,11 @@ console.log(module.sum(4,5)); // OP => 9
 ➔ Response body :: Actual data to be sent to client : HTML, JS, JSON, CSS, Image etc. <br/>
 ➔ Headers :: Meta data sent by your server back to client like server name, content size, last updated time etc. <br/>
 
+## ❤️ Create a simple HTTP server using the built-in http module in NodeJs
+➔ [code with explaination](https://chat.openai.com/share/1eccb9c7-ac43-46d8-a36c-e14ac52e9413) <br/>
 
+➔ what is  [`res.setHeader(name,value)` ](https://chat.openai.com/share/27826b3e-3e1a-486a-a140-8dcf735af393) <br/>
 
+➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖ <br/>
+➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖ <br/>
+<br/>
