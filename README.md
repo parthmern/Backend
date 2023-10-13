@@ -233,7 +233,7 @@ console.log(module.sum(4,5)); // OP => 9
 ➔ You can install express `npm install express` <br/>
 <br/>
 
-➔ about FS [what is filesystem](https://chat.openai.com/share/edfba47e-cb29-4e8b-9c79-9b692d895cde) <br/>
+## 🧡 about FS [what is filesystem](https://chat.openai.com/share/edfba47e-cb29-4e8b-9c79-9b692d895cde) <br/>
 
 ```
 const fs = require('fs');
@@ -251,8 +251,7 @@ try {
 }
 
 ```
-
-➔ create expres server [chatGpt](https://chat.openai.com/share/2a18d381-58b8-4c64-9d77-71d5e01b3f03) 
+## 💜 create expres server [chatGpt](https://chat.openai.com/share/2a18d381-58b8-4c64-9d77-71d5e01b3f03) 
 
 ```
 const express = require("express");
@@ -285,7 +284,9 @@ server.get('/demo', (req, res) => {
 // res.send we can see on our webpage with url "/"
 ```
 
-➔ HTTP Request Types we generally use :
+
+## 💛 HTTP Request Types we generally use 
+➔ API / Endpoints / Routes are used inter-changeably but they are related to server paths. <br/>
 ```
 server.get("/",(req, res)=>{
   res.json({type:"GET"});
@@ -306,4 +307,65 @@ server.delete("/",(req, res)=>{
 server.patch("/",(req, res)=>{
   res.json({type:"PATCH"});
 })
+```
+## 💚 Middleware
+➔ Middleware - Modifies the request before it reaches the next middleware or endpoints. <br/>
+➔ Sequence of middleware is very important, as first middleware is first traversed by request. <br/>
+
+➔ [chatGpt read first](https://chat.openai.com/share/d11b014d-1463-49ca-bb13-750e3e5bfaae) <br/>
+
+1️⃣ Application level : server.use(middleware)
+```
+server.use((req, res, next) => {
+  console.log('Middleware function executed.');
+  next();
+});
+```
+
+2️⃣ Router level : server.get('/', middleware, (req,res)=>{})
+```
+const middleware = (req,res,next) =>{
+    // all conditions here
+    if(condition){
+        res.send("authorized");
+        next();
+    }
+    else{
+        res.send("unauthorized").status(400); 
+    }
+}
+
+server.get('/', middleware, (req,res)=>{})
+
+//==== OR =====
+
+const router = express.Router();
+
+// Router-level middleware
+router.use((req, res, next) => {
+  console.log('This middleware is executed for routes defined on this router.');
+  next();
+});
+
+// Route definition with router-level middleware
+router.get('/', (req, res) => {
+  res.send('Response for the root route.');
+});
+```
+
+3️⃣ Built-in middleware - [chatGpt](https://chat.openai.com/share/eb5d170e-b0da-4e3f-9c11-f5a7d38fb295)
+```
+// Built-in middleware for JSON parsing and for parsing body data
+server.use(express.json());
+
+// for static hosting
+server.use(express.static('public'));
+```
+
+4️⃣ External Middle-wares / third party (ex. Morgon )
+```
+// npm i morgan
+
+const morgan = require('morgan');
+server.use(morgan('dev'));   // here "dev" is predefined-method like 
 ```
