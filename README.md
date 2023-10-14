@@ -314,12 +314,16 @@ server.patch("/",(req, res)=>{
 
 ➔ [chatGpt read first](https://chat.openai.com/share/d11b014d-1463-49ca-bb13-750e3e5bfaae) <br/>
 
-1️⃣ Application level : server.use(middleware)
+1️⃣ Application level : server.use(middleware) for middleware
 ```
 server.use((req, res, next) => {
   console.log('Middleware function executed.');
   next();
 });
+
+//==== OR ====
+
+// for ProductRouter of express
 ```
 
 2️⃣ Router level : server.get('/', middleware, (req,res)=>{})
