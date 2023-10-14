@@ -116,6 +116,7 @@ mongoose.connect('mongodb://127.0.0.1:27017/testDb',{
 # 🌈 Chapter 1 - Introduction to Node, NPM, Package.JSON
 
 ## 💛 What is NODE ?
+➔ Node.js is a runtime environment that allows you to execute JavaScript code on the server-side. In simple terms, it enables you to use JavaScript for server-side programming, not just in web browsers  <br/>
 ➔ runtime + apis  <br/>
 ➔ runtime environment for Js + apis <br/>  ➔ asynchronous <br/> 
 ➔ non blocking I/O  <br/>  <br/>
@@ -163,7 +164,8 @@ console.log(module);    // OP => { sum: [Function: sum] }
 console.log(module.sum(4,5)); // OP => 9
 ```
 
-➔ [Es6 type import export](https://chat.openai.com/share/796432e7-43ce-4ca8-aa4a-710d3e98cff8)
+➔ [Es6 type import export](https://chat.openai.com/share/796432e7-43ce-4ca8-aa4a-710d3e98cff8) <br/>
+➔ [how to know that working file suports ES6 or not -- mark pointNo 2 that `package.json` have "type": "module" if yes then support](https://chat.openai.com/share/6a93ff8b-15a5-4838-b0f2-b0e4eade4143) <br/>
 
 ## 💜 NPM 
 ➔ create folder then go into this folder using terminal <br/>
@@ -233,12 +235,12 @@ console.log(module.sum(4,5)); // OP => 9
 ➔ You can install express `npm install express` <br/>
 <br/>
 
-## 🧡 about FS [what is filesystem](https://chat.openai.com/share/edfba47e-cb29-4e8b-9c79-9b692d895cde) <br/>
+## 🧡 about FS [what is filesystem- chatGpt](https://chat.openai.com/share/edfba47e-cb29-4e8b-9c79-9b692d895cde) <br/>
 
 ```
 const fs = require('fs');
 
-const index = fs.readFileSync('anyFile.`xtension`', 'utf-8');
+const index = fs.readFileSync('anyFile.xtension', 'utf-8');
 console.log('File contents:', index);
 
 // ==== OR ====
@@ -473,7 +475,7 @@ server.get("/product", getProductFunction );
 ```
 ➔ *difference between put and patch*- [chatGpt](https://chat.openai.com/share/fa1a9edf-22e5-4081-8582-ba15333df66a) <br/>
 ➔ PUT `\task\:id` : to update a particular task which can be identified by unique id. Data to be updated will be sent in the request body. Document data will be generally totally replaced. <br/>
-➔ PATCH \task\:id` : to update a particular task which can be identified by unique id. Data to be updated will be sent in the request body. Only few fields will be replace which are sent in request body <br/>
+➔ PATCH `\task\:id` : to update a particular task which can be identified by unique id. Data to be updated will be sent in the request body. Only few fields will be replace which are sent in request body <br/>
 
 ➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖ <br/>
 ➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖ <br/>
