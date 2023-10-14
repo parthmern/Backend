@@ -428,6 +428,7 @@ server.listen(3000,()=>{
 
 //===========================================
 //  C R U D
+// http://localhost:3000/products
 
 // GET - Read
 server.get("/products",(req,res)=>{
@@ -467,3 +468,160 @@ const getProductFunction = (req,res) =>{
 server.get("/product", getProductFunction );
 ```
 ➔ *difference between put and patch*- [chatGpt](https://chat.openai.com/share/fa1a9edf-22e5-4081-8582-ba15333df66a) <br/>
+➔ PUT `\task\:id` : to update a particular task which can be identified by unique id. Data to be updated will be sent in the request body. Document data will be generally totally replaced. <br/>
+➔ PATCH \task\:id` : to update a particular task which can be identified by unique id. Data to be updated will be sent in the request body. Only few fields will be replace which are sent in request body <br/>
+
+➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖ <br/>
+➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖ <br/>
+<br/>
+
+# 🌈 Chapter 5 - Backend Directory Structure / MVC / Router
+
+## 💚 MVC (Model-View-Controller)
+➔ is a pattern in software design commonly used to implement user interfaces (VIEW), data (MODEL), and controlling logic (CONTROLLER). It emphasizes a separation between the software's business logic and display.<br/>
+➔ Model - Database Schema's and Business logics and rules <br/>
+➔ View - Server Side Templates (or React front-end)   <br/>
+➔ Controller - functions attached to routes for modifying request and sending responses. It's a link between the Model and View. <br/>
+
+➔ without any folder/mvc the code is
+```
+console.log("start");
+
+// create server
+const express = require("express");
+const server = express();
+
+//=============================================
+// MIDDLEWARES 
+server.use(express.json());
+// const morgan = require("morgan");
+// server.use(morgan('default'));
+server.use(express.static('public'));
+
+// 🔥 product router
+const productRouter = express.Router();
+server.use("/", productRouter);
+
+// server.use("/xxxx", productRouter);      //==> means "http://localhost:3000/xxxx/products
+
+//==========================================
+server.listen(3000,()=>{
+    console.log("server starts on 3000 port");
+});
+//==========================================
+// C R U D ops 
+
+const getProduct = (req,res)=>{
+    console.log("get product working");
+    res.json({"key" : "value GET json"});
+};
+
+const postProduct = (req,res)=>{
+    console.log("post product working");
+    const body = req.body ;
+    res.json(body);
+}
+
+const putProduct = (req,res)=>{
+    console.log("put product working");
+    const body = req.body ;
+    res.json(body);
+}
+
+const patchProduct = (req,res)=>{
+    console.log("patch product working");
+    const body = req.body ;
+    res.json(body);
+}
+
+const deleteProduct = (req,res)=>{
+    console.log("delete product working");
+    const body = req.body ;
+    res.json(body);
+}
+
+productRouter
+.get("/products", getProduct)
+.post("/products", postProduct)
+.put("/products", putProduct)
+.patch("/products", patchProduct)
+.delete("/products", deleteProduct);
+
+```
+
+➔ ❄️ after MVC folder creation
+```
+// 📂 controller > productController.js
+
+exports.getProduct = (req,res)=>{
+    ...
+};
+
+exports.postProduct = (req,res)=>{
+   ...
+}
+
+exports.putProduct = (req,res)=>{
+    ...
+}
+
+exports.patchProduct = (req,res)=>{
+    ...
+}
+
+exports.deleteProduct = (req,res)=>{
+    ...
+}
+
+```
+and
+```
+// 📂 routes > productRoutes.js
+
+// requirements
+const express = require("express");
+const router = express.Router();
+const productController = require("../controller/productController");
+
+router
+.get("/products", productController.getProduct)
+.post("/products", productController.postProduct)
+.put("/products", productController.putProduct)
+.patch("/products", productController.patchProduct)
+.delete("/products", productController.deleteProduct);
+
+exports.router = router ;
+```
+and
+```
+// 📂 index.js
+
+console.log("start");
+ 
+// import from controller
+const productController = require("./controller/productController");
+
+// create server
+const express = require("express");
+const server = express();
+
+//=============================================
+// MIDDLEWARES 
+server.use(express.json());
+// const morgan = require("morgan");
+// server.use(morgan('default'));
+server.use(express.static('public'));
+
+// product router
+const productRouter = require("./routes/productRoutes");
+server.use("/", productRouter.router);
+
+//server.use("/xxxx", productRouter);
+
+//========================================== 
+
+server.listen(3000,()=>{
+    console.log("server starts on 3000 port");
+})
+
+```
