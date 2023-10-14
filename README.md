@@ -369,3 +369,34 @@ server.use(express.static('public'));
 const morgan = require('morgan');
 server.use(morgan('dev'));   // here "dev" is predefined-method like 
 ```
+
+## 💜 Request properties (req is our request object)
+➔ [chatGpt generated](https://chat.openai.com/share/192699a5-12d5-40b8-8e8d-247d88db3289) <br/>
+
+➔ `req.ip` - IP address of client <br/>
+➔ `req.method` - HTTP method of request <br/>
+➔ `req.hostname` - like google.com / localhost <br/>
+➔ `req.query` - for capturing query parameters from URL e.g. localhost:8080 ? query=value <br/>
+➔ `req.body` -for capturing request body data (but its needs a middleware for body data decoding) <br/>
+➔ `req.params` - for capturing URL parameters for route path like /products/:id <br/>
+
+## 💛 3 major ways of sending data from client to server via request are 
+➔ [chatGpt ans](https://chat.openai.com/share/ef2bae11-ebfc-421c-837d-f56c62f50320) <br/>
+➔ [coderDost github](https://github.com/coderdost/full-stack-dev-2023/tree/main#-chapter-notes--2) <br/>
+
+
+➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖ <br/>
+➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖ <br/>
+<br/>
+
+# 🌈 Chapter 4 - REST API using Express JS
+➔ here we are creating CRUD operation related apis  <br/>
+
+➔  [why below 3 are needed - chatGpt ](https://chat.openai.com/share/3d3d5f38-3834-4ad6-998d-dd3189403522)
+```
+server.use(express.json()); // Needed to parse JSON data in incoming requests bcz nodeJs ko pata nhi chalta ki wo json data hai === "Content-Type", "application/json"
+server.use(morgan('default')); //  When a client makes an HTTP request to your server, morgan logs information like this = " GET /api/user 200 15.123 ms "
+server.use(express.static('public')); // Required to serve static files (e.g., HTML, CSS, JavaScript) to clients
+```
+
+
