@@ -631,3 +631,96 @@ server.listen(3000,()=>{
 })
 
 ```
+# 🌈 Chapter 6 - MongoDB - Server / Mongo Shell (CLI) / Mongo Atlas
+
+## 💚 MongoDB
+➔ database, but it's not like traditional relational databases that use tables to store data. Instead, MongoDB is a *NoSQL* database that stores data in a format called BSON (Binary JSON) and uses a flexible structure known as "documents." <br/>
+<br/>
+➔ No-Sql Db like mongoDb <br/>
+<br/> 
+<img src="https://i.ibb.co/KGRvmnj/Screenshot-2023-10-15-12-44-28-655-com-mxtech-videoplayer-ad.jpg" width="600px" height="300px" border="0"> <br/>
+<img src="https://i.ibb.co/mSMpGqG/Screenshot-2023-10-15-12-44-39-366-com-mxtech-videoplayer-ad.jpg" width="600px" height="300px" border="0"> <br/>
+*- Database are topmost storage level of your data - mostly each application has 1 database - however complex application might have more than 1 databases. Database is something like `university database`* <br/>
+*- There can be many collections inside a database - collection is a group of documents of similar kind - `students`, `teachers`, `courses` etc* <br/>
+*- Finally document is basic entity of storage in Mongod, it looks very similar to an object in JSON. (However it is BSON)*  <br/>
+<img src="https://i.ibb.co/1X2JTps/Screenshot-2023-10-15-12-44-51-940-com-mxtech-videoplayer-ad.jpg" width="600px" height="300px" border="0"> <br/>
+
+➔ SQL Db <br/>
+<br/> 
+<img src="https://i.ibb.co/Hx3Bqky/Screenshot-2023-10-15-12-44-18-270-com-mxtech-videoplayer-ad.jpg" width="600px" height="300px" border="0"> <br/>
+
+## ❤️ Download 
+➔ after installation <br/>
+➔ in cmd, open mongosh path and then run `mongosh` to run the mongosh <br/>
+➔ `show dbs` to see all Dbs <br/>
+➔ `use <dbname>` to open patricular Db <br/> 
+➔ `use <notExistingDbName>` to create new Db <br/>
+➔ `show collections` to see the collections of selected Db <br/>
+
+## 💛 MONGO CLI
+➔ Mongo DB community server comes with in-bulit Mongo CLI which can act as a terminal based client. You can use the CRUD functionality from here. <br/>
+<br/> 
+
+➔ Create Query (insertOne, insertMany) <br/>
+```
+db.<collectionName>.insertOne( newDocument )
+db.<collectionName>.insertMany( documentArray )
+```
+<br/>
+➔ Read Query (find, findOne) <br/>
+```
+db.< collectionName >.find( filterObject ) -- to read all docs
+db.< collectionName >.findOne( filterObject ) -- to read one document
+db.< collectionName >.countDocuments( filterObject ) -- shows total number of documents
+
+// filter Object === { fieldName : {operator: value}}
+// fieldName : database fields name
+// operator : $eq = equal , $gt= greater than, $lt : less than, $gte = greater than equal, $and and $or operator
+// Value : what value we are comparing with operatorV
+// { age : {$gt:5}}. - age is greater than value 5
+```
+<br/>
+➔ Update Query (updateOne) <br/>
+```
+db.< collectionName >.updateOne( filterObject, updateObject, options )
+
+// update Objects = { $set : {field: value}}
+// options : {upsert: true}
+
+// Upsert : Update + Insert, when we want a new info to create a new obejcts if no existing object matches filter queries.
+// db.< collectionName >.replaceOne( filterObject, updateObject ) --- Overwrites other fields also which are not in updateObject.
+```
+<br/>
+➔ Delete Query (deleteOne, deleteMany) <br/>
+```
+db.< collectionName >.deleteOne( filterObject )
+```
+➔ Delete database (drop) <br/>
+🔥 all crud query explained = [chatGpt](https://chat.openai.com/share/83636033-e6a7-4655-8824-8d9ab4661f3e) <br/>
+ <br/>
+<br/>
+
+
+➔ ✔️ logical operators in query -  [chatGpt](https://chat.openai.com/share/4aa86e1c-e5ef-4fb1-86f8-9a7a1631beeb)  <br/>
+ <br/>
+
+
+➔ 🔆 cursor in query
+```
+db.collection_name.find({
+    $or: [ 
+            { price: {$gt: 100} },
+            { id : {$gt : 3} }
+         ]
+})
+.sort({ price : 1)
+.limit(2)
+
+// here after getting result we are using sort (array method) + limit is 2 here
+
+// sort( {fieldName: 1}) : 1 for ascending -1 for descending
+// limit( x ) : only gives x documents
+```
+
+
+➔ Hostname is Database server address - like `localhost` or `db.xy.com` . In mongoDB hostname generally uses mongodb protocol to connect. So URLs are generally are of shape : `mongodb://localhost:27017` 
