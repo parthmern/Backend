@@ -666,7 +666,8 @@ server.listen(3000,()=>{
 db.<collectionName>.insertOne( newDocument )
 db.<collectionName>.insertMany( documentArray )
 ```
-<br/>
+
+
 ➔ Read Query (find, findOne) <br/>
 ```
 db.< collectionName >.find( filterObject ) -- to read all docs
@@ -679,7 +680,8 @@ db.< collectionName >.countDocuments( filterObject ) -- shows total number of do
 // Value : what value we are comparing with operatorV
 // { age : {$gt:5}}. - age is greater than value 5
 ```
-<br/>
+
+
 ➔ Update Query (updateOne) <br/>
 ```
 db.< collectionName >.updateOne( filterObject, updateObject, options )
@@ -687,15 +689,19 @@ db.< collectionName >.updateOne( filterObject, updateObject, options )
 // update Objects = { $set : {field: value}}
 // options : {upsert: true}
 
-// Upsert : Update + Insert, when we want a new info to create a new obejcts if no existing object matches filter queries.
+// Upsert : Update + Insert, when we want a new info to create a new obejcts if no existing object matches filter queries. -- update karo and aagar update condition match na ho toh insert kr do
 // db.< collectionName >.replaceOne( filterObject, updateObject ) --- Overwrites other fields also which are not in updateObject.
 ```
-<br/>
+
+
 ➔ Delete Query (deleteOne, deleteMany) <br/>
 ```
 db.< collectionName >.deleteOne( filterObject )
 ```
+
+
 ➔ Delete database (drop) <br/>
+
 🔥 all crud query explained = [chatGpt](https://chat.openai.com/share/83636033-e6a7-4655-8824-8d9ab4661f3e) <br/>
  <br/>
 <br/>
@@ -722,5 +728,22 @@ db.collection_name.find({
 // limit( x ) : only gives x documents
 ```
 
+➔ 🚀  Projection - <br/>
+- Only return selected fields while returning result documents. <br/>
+```
+db.< collectionName >.find( filterObject, projectionObject )
+
+// e.g. {name:1, age:1, id:0} - only show name and age and don't show id
+
+```
 
 ➔ Hostname is Database server address - like `localhost` or `db.xy.com` . In mongoDB hostname generally uses mongodb protocol to connect. So URLs are generally are of shape : `mongodb://localhost:27017` 
+
+## 💜 MONGO ATLAS CLOUD SETUP
+➔ [setUp-video](https://youtu.be/4vtFY_ijpKs?si=lVPzudFo72LHMeap)
+
+## 💙 Enviroment Variable
+➔ To use environment variable we can use a npm package called dotenv which will create new **process.env** variables.  <br/>
+➔ Install dotenv using `npm install dotenv`  <br/> 
+➔ create `.env` file in your root directory  <br/>
+➔ for usage call `require('dotenv').config()`  <br/>
