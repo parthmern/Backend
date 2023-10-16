@@ -747,3 +747,153 @@ db.< collectionName >.find( filterObject, projectionObject )
 ➔ Install dotenv using `npm install dotenv`  <br/> 
 ➔ create `.env` file in your root directory  <br/>
 ➔ for usage call `require('dotenv').config()`  <br/>
+➔ and write like `process.env.<variableName>` <br/>
+<br/>
+
+➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖ <br/>
+➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖ <br/>
+<br/>
+
+# 🌈 Chapter 7  - Mongoose and REST APIs
+
+## 💛 Mongoose
+➔ Mongoose is a popular JavaScript library that is commonly used with Node.js to interact with MongoDB. <br/>
+➔ `npm install mongoose` installation. <br/>
+➔ connect mongoose
+```
+const mongoose = require('mongoose');
+
+mongoose.connect('mongodb://127.0.0.1:27017/testDb',{
+    useNewurlParser : true,
+    useUnifiedTopology : true
+})
+.then(()=>{console.log("connection successfull between express server with mongoDB")})
+.catch(()=>{console.log("error")})
+
+
+// here testDb is db name that we have created in the mongodb compass
+```
+
+✔️ **Schema** <br/>
+➔ each collection have some configurations - [chatGpt](https://chat.openai.com/share/b8b5c3a3-168b-407c-b7ad-d20715761da7) <br/>
+➔ schema means hum jaise sql me collumn name likh kar uski dataType define karte hai waise hee, idhar no-sql me hum create krte hai. <br/>
+
+```
+// schema 
+// OOP in js "new obj"
+
+const Schema = mongoose.Schema ;
+const productSchema = new Schema({
+    title : String,        // String is shorthand of { type: String }
+    description : String,
+    price : Number, 
+});
+```
+➔ DataTypes in schema - String, Number, Date, Boolean, Mixed, ObjectId, Array <br/>
+➔ you can also put conditions in schema <br/>
+```
+age: { type: Number, default:18, min: 18, max: 65, required :true }
+// default value of Number is 18 and should be between 18-65, and can't be null or empty
+
+//=============================
+// other example
+
+const userSchema = new Schema({
+  username: { type: String, required: true, unique: true },
+  email: { type: String, required: true },
+  age: { type: Number, min:[18, "error that below 18"], max:[50,"eroor that above 50"] },
+});
+```
+
+✔️ **Model** <br/>
+➔ Model are similar to classes, they create a Class from Schema. These classes(i.e Models) can be used to create each new database object. <br/>
+```
+// 📂 model > product.js
+const mongoose = require('mongoose');
+const { Schema } =  mongoose;
+
+const taskSchema = new Schema({
+    title:  String,
+    status: Boolean,
+    date: { type: Date, default: Date.now },    
+  });
+
+// create collection through model -- Create a model based on the schema
+const Task = mongoose.model('Task', taskSchema);  //-- Task Model to create new database objects for `tasks` Collection 
+// model se ek new Collection create hoga named "Task" and taskSchema is the configuration for the "Task" collection
+// and const Task ek variable hai and wo he ek new created collection hai
+```
+
+💫 **Create new objects/data in collection** <br/>
+➔ To Create new obejct in database we can use `new` keyword and create an object from Model. We can use `save()` function to save the object in database. Unless, you call save function - the object remains in memory. If your collection not yet created in MongoDB, it will created with name of Model pluralized (e.g Task will make a collection named tasks) <br/>
+```
+
+server.post("/task",function(req,res){
+    let task = new Task();             // here "new Task()" create a new task of model named Task
+    task.title = "shopping";
+    task.status = true;
+    task.date = new Date();
+
+    task.save();
+    //=====OR
+    task.save().then((doc)=>{console.log("saved",doc)}).catch((error)=>{console.log("not saved errorr",error)})
+    //=====OR
+    task.save((error,doc)=>{console.log({error,doc})})  //🎯 if this give error of " no longer accepts a callback " then use .then and .catch
+})
+
+```
+💫 **Read objects** <br/>
+➔ To read new obejcts from database, one can use `find` query or similar queries. `find` queries also contain some conditions which can restrict what kind of data objects you want to read from database. <br/>
+
+```
+server.get("/task/:name",function(req,res){
+    task.findOne({name:req.params.name},function(err,doc){
+        console.log(doc)  // this will contain db object
+    })
+})
+
+
+server.get("/tasks",function(req,res){
+    task.find({},function(err,docs){
+        console.log(docs)  // this is an array which contains all task objects
+    })
+})
+
+// task.find({id:{$gt:3});
+// task.findById(2);
+```
+
+💫 **Update - existing objects** <br/>
+➔ To Update an existing object in database we need to first `find` an object from database and then update in database. This might be considered as a combination of find and `save` methods. <br/>
+➔ 2 cases in update <br/>
+
+- Updating all values and overwriting the object properties completely.
+- Updating only few values by setting their new values.
+
+➔ First scenario is covered using this query. Here you are overwriting all properties and resulting object will only have `name` property.
+```
+server.put("/task/:name",function(req,res){
+    Task.findOneAndReplace({name:req.params.name},{name:'YouStart'},{new:true},function(err,doc){
+        console.log(doc)  // this will contain new db object
+    })
+})
+```
+➔ Second scenario is covered using this query. Here you are only changing value of `name` property in existing object without changing other values in Object.
+```
+
+server.put("/task/:name",function(req,res){
+    Task.findOneAndUpdate({name:req.params.name},{name:'YouStart'},,{new:true},function(err,doc){
+        console.log(doc)  // this will contain db object
+    })
+})
+
+```
+💫 **Delete - existing objects**
+➔ To Delete existing object from database we need to first `find` an object from database and then `delete`. This might be considered as a combination of find and delete methods.
+```
+server.delete("/task/:name",function(req,res){
+    Task.findOneAndDelete({name:req.params.name},function(err,doc){
+        console.log(doc)  // this will contain deleted object object
+    })
+})
+```
