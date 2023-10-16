@@ -824,6 +824,8 @@ const Task = mongoose.model('Task', taskSchema);  //-- Task Model to create new 
 // and const Task ek variable hai and wo he ek new created collection hai
 ```
 
+ <br/>
+
 💫 **Create new objects/data in collection** <br/>
 ➔ To Create new obejct in database we can use `new` keyword and create an object from Model. We can use `save()` function to save the object in database. Unless, you call save function - the object remains in memory. If your collection not yet created in MongoDB, it will created with name of Model pluralized (e.g Task will make a collection named tasks) <br/>
 ```
@@ -842,6 +844,9 @@ server.post("/task",function(req,res){
 })
 
 ```
+
+ <br/>
+
 💫 **Read objects** <br/>
 ➔ To read new obejcts from database, one can use `find` query or similar queries. `find` queries also contain some conditions which can restrict what kind of data objects you want to read from database. <br/>
 
@@ -862,6 +867,8 @@ server.get("/tasks",function(req,res){
 // task.find({id:{$gt:3});
 // task.findById(2);
 ```
+
+ <br/>
 
 💫 **Update - existing objects** <br/>
 ➔ To Update an existing object in database we need to first `find` an object from database and then update in database. This might be considered as a combination of find and `save` methods. <br/>
@@ -888,8 +895,11 @@ server.put("/task/:name",function(req,res){
 })
 
 ```
-💫 **Delete - existing objects**
-➔ To Delete existing object from database we need to first `find` an object from database and then `delete`. This might be considered as a combination of find and delete methods.
+
+ <br/>
+
+💫 **Delete - existing objects**  <br/>
+➔ To Delete existing object from database we need to first `find` an object from database and then `delete`. This might be considered as a combination of find and delete methods. <br/>
 ```
 server.delete("/task/:name",function(req,res){
     Task.findOneAndDelete({name:req.params.name},function(err,doc){
@@ -897,3 +907,13 @@ server.delete("/task/:name",function(req,res){
     })
 })
 ```
+
+<br/>
+
+🌌 [summarized notes](https://github.com/coderdost/full-stack-dev-2023/tree/main#-chapter-notes--6)
+
+➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖ <br/>
+➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖ <br/>
+<br/>
+
+# 🌈 Chapter 8 - 
