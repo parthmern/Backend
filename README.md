@@ -916,4 +916,19 @@ server.delete("/task/:name",function(req,res){
 ➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖ <br/>
 <br/>
 
-# 🌈 Chapter 8 - 
+# 🌈 Chapter 8 - React Integration and MERN Stack Live deployment
+➔ Sending data from front-end to Server <br/>
+- Fetch : it is in-built API in the browser
+- Axios : we will use axios as it is easier to use.
+
+🔹 CORS Issues : <br/>
+➔ CORS - Cross-Origin Resource Sharing (CORS) is a standard that allows a server to relax the same-origin policy <br/>
+➔ CORS - Cross-Origin Resource Sharing (CORS) is a standard that allows a server to relax the same-origin policy <br/>
+➔ we will use CORS package to allow cross origin request from React JS server to NodeJS server as they are on different hosts. 
+➔ `npm install cors`
+➔  to use cors
+```
+const cors = require('cors');
+server.use(cors())
+```
+➔ ♻️ using axios all crud ops with db- [chatgpt](https://chat.openai.com/share/e01c7323-af08-4c3d-89c8-6c8552fac811) <br/>
