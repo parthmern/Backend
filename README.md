@@ -164,7 +164,10 @@ console.log(module);    // OP => { sum: [Function: sum] }
 console.log(module.sum(4,5)); // OP => 9
 ```
 
-➔ [Es6 type import export](https://chat.openai.com/share/796432e7-43ce-4ca8-aa4a-710d3e98cff8) <br/>
+➔ 💤 [Es6 type import export -chatGPT](https://chat.openai.com/share/796432e7-43ce-4ca8-aa4a-710d3e98cff8) <br/>
+➔ ⚠️ IMP == import export for one and more than one fucntion - [chatGpt](https://chat.openai.com/share/92c22d38-de5c-403b-982a-55082b53be91) <br/>
+*- iisme aagar ek function ko he hum export karte hai toh import k time par hum us function ko directly access kar sakte hai tab hame "varName.exportedFunctionName" meaning "." ka use NAHII karna padta hai* <br/>
+*- agar ek se jyada function export kiye hai toh hame "." use karna padega jaise ki "varName.function1" and "varName.function2" like*
 ➔ [how to know that working file suports ES6 or not -- mark pointNo 2 that `package.json` have "type": "module" if yes then support](https://chat.openai.com/share/6a93ff8b-15a5-4838-b0f2-b0e4eade4143) <br/>
 
 ## 💜 NPM 
@@ -631,6 +634,13 @@ server.listen(3000,()=>{
 })
 
 ```
+
+### ❌❌ ✅ IMP to understand folder structure -- [link](https://github.com/parthmern/Web-Development-with-CodeHelp/tree/1370d9fb40bdaa23938c34e6f59f9e1a46d2671b/11_Backend%20Development%20%2B%20Express%20-%20I/BD-%20Class%202%20again-%20folderStructureImportant)
+
+➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖ <br/>
+➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖ <br/>
+<br/>
+
 # 🌈 Chapter 6 - MongoDB - Server / Mongo Shell (CLI) / Mongo Atlas
 
 ## 💚 MongoDB
@@ -768,13 +778,20 @@ mongoose.connect('mongodb://127.0.0.1:27017/testDb',{
     useUnifiedTopology : true
 })
 .then(()=>{console.log("connection successfull between express server with mongoDB")})
-.catch(()=>{console.log("error")})
+.catch(()=>{console.log("error");
+            //exit the application and indicate that it exited with an error + terminate your Node.js application programmatically when a specific error condition occurs     
+            process.exit(1);
+           })
 
+// mongoose.connect('mongodb://localhost/myNewdbName', { useNewUrlParser: true });
+// mongoose.connect('mongodb://192.168.1.100:27017/myNewdbName', { useNewUrlParser: true });
+// above both are same but aagar DB connect nhi ho rha toh -- 192.168.1.100:27017 try this one
 
 // here testDb is db name that we have created in the mongodb compass
 ```
 
 ✔️ **Schema** <br/>
+➔ description of data <br/>
 ➔ each collection have some configurations - [chatGpt](https://chat.openai.com/share/b8b5c3a3-168b-407c-b7ad-d20715761da7) <br/>
 ➔ schema means hum jaise sql me collumn name likh kar uski dataType define karte hai waise hee, idhar no-sql me hum create krte hai. <br/>
 
@@ -802,6 +819,7 @@ const userSchema = new Schema({
   username: { type: String, required: true, unique: true },
   email: { type: String, required: true },
   age: { type: Number, min:[18, "error that below 18"], max:[50,"eroor that above 50"] },
+  createdAt : {type : Date, required : true, default : Date.now() },                     // Date.now() wala 
 });
 ```
 
