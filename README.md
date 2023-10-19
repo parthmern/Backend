@@ -165,9 +165,29 @@ console.log(module.sum(4,5)); // OP => 9
 ```
 
 ➔ 💤 [Es6 type import export -chatGPT](https://chat.openai.com/share/796432e7-43ce-4ca8-aa4a-710d3e98cff8) <br/>
-➔ ⚠️ IMP == import export for one and more than one fucntion - [chatGpt](https://chat.openai.com/share/92c22d38-de5c-403b-982a-55082b53be91) <br/>
+➔ ⚠️ IMP == import export for one and more than one fucntion - [chatGpt](https://chat.openai.com/share/e2a00a93-710f-4544-b6ff-edbf5def141b) <br/>
 *- iisme aagar ek function ko he hum export karte hai toh import k time par hum us function ko directly access kar sakte hai tab hame "varName.exportedFunctionName" meaning "." ka use NAHII karna padta hai* <br/>
-*- agar ek se jyada function export kiye hai toh hame "." use karna padega jaise ki "varName.function1" and "varName.function2" like*
+*- agar ek se jyada function export kiye hai toh hame "." use karna padega jaise ki "varName.function1" and "varName.function2" like* <br/>
+```
+module.exports = xxFunc ;
+// here we can directly import
+const ImportedxxFunc = require("./config");
+console.log(ImportedxxFunc);  //------> function xxFunc(){ .. }
+//==========================
+ 
+module.exports = {xxFunc} ;
+const ImportedObj = require("./config");
+console.log(ImportedObj);  //---------> { xxFunc : function() } 
+console.log(ImportedObj.xxFunc); //--------> function xxFunc(){ .. }   // ❌AVOID this type import "." type
+// OR
+const {xxFunc} = require("./config");
+
+//==========================
+
+exports.xxFunc = () => {...} 
+const {xxFunc} = require("./config");
+
+```
 ➔ [how to know that working file suports ES6 or not -- mark pointNo 2 that `package.json` have "type": "module" if yes then support](https://chat.openai.com/share/6a93ff8b-15a5-4838-b0f2-b0e4eade4143) <br/>
 
 ## 💜 NPM 
