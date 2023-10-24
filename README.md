@@ -948,7 +948,33 @@ server.delete("/task/:name",function(req,res){
 
 <br/>
 
-🌌 [summarized notes](https://github.com/coderdost/full-stack-dev-2023/tree/main#-chapter-notes--6)
+🌌 [summarized notes by coderDost](https://github.com/coderdost/full-stack-dev-2023/tree/main#-chapter-notes--6) 
+
+<br/>
+
+✅♻️ **Take referance of one model to another model** -- [video link](https://youtu.be/VuSt5-AwL8Y?si=hsgv2KyyuN7o0tWC)
+```
+// in POSTMODEL.JS in postSchema
+
+likes : [{
+            // MODEL ID 
+            type : Schema.Types.ObjectId,
+            // model name which id we needs - ref to the post model
+            ref : "Like"
+        }],
+
+// here [ ref : "Like" ] is reffering to the LIKE MODEL which is made based on like schema
+// and [type : Schema.Types.ObjectId ] is pointing out to the ID of LIKE MODEL's items ID
+
+
+comments : [{
+            type: String ,
+            ref : "Comment",
+        }]
+
+// here COMMENT MODEL is referance
+// and comments type will be String
+```
 
 ➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖ <br/>
 ➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖ <br/>
@@ -962,9 +988,9 @@ server.delete("/task/:name",function(req,res){
 🔹 CORS Issues : <br/>
 ➔ CORS - Cross-Origin Resource Sharing (CORS) is a standard that allows a server to relax the same-origin policy <br/>
 ➔ CORS - Cross-Origin Resource Sharing (CORS) is a standard that allows a server to relax the same-origin policy <br/>
-➔ we will use CORS package to allow cross origin request from React JS server to NodeJS server as they are on different hosts. 
-➔ `npm install cors`
-➔  to use cors
+➔ we will use CORS package to allow cross origin request from React JS server to NodeJS server as they are on different hosts.  <br/>
+➔ `npm install cors` <br/>
+➔  to use cors <br/>
 ```
 const cors = require('cors');
 server.use(cors())
