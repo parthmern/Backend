@@ -881,6 +881,13 @@ server.post("/task",function(req,res){
     task.save((error,doc)=>{console.log({error,doc})})  //🎯 if this give error of " no longer accepts a callback " then use .then and .catch
 })
 
+//===================================
+const {title, body} = req.body;
+const post = new Post({
+             title,body,
+            });
+const savedPost = await post.save();
+
 ```
 
  <br/>
@@ -975,6 +982,53 @@ comments : [{
 // here COMMENT MODEL is referance
 // and comments type will be String
 ```
+
+<br/>
+
+⚠️ **POPULATE -**  <br/>
+➔ it gives the whole item insted of only ID
+```
+const updatedPost = await Post.findByIdAndUpdate(post, {$push : {comments : savedComment._id}}, {new: true})
+                            .populate("comments") // populate the comments array with comment documents
+                            .exec();
+
+//.exec() explicitly allows you to provide a callback function for error handling and result processing, which can be very useful in more complex scenarios.
+// we can avoid .exec()  
+
+// populate use nhi karenge toh "updatedPost" me sirf ID melegi
+// populate("<objectPropertyName>")
+// ...
+        "comments": [
+            "6538d97081fd589e898fbd43",
+            "6538dab83facb4414d4f007b"
+        ]
+    }
+}
+
+// with populate
+// ...
+"comments": [
+            {
+                "_id": "6538d97081fd589e898fbd43",
+                "post": "6538d80d1fcf5c62f583bc10",
+                "user": "parth ptlk",
+                "body": "upsstrial",
+                "__v": 0
+            },
+            {
+                "_id": "6538dab83facb4414d4f007b",
+                "post": "6538d80d1fcf5c62f583bc10",
+                "user": "parth ptlk",
+                "body": "upsstrial",
+                "__v": 0
+            }]
+
+```
+
+<br/>
+
+⭕️♻️ **try to understand this code** <br/>
+➔ [here is the code- chatgpt](https://chat.openai.com/share/7edbbac4-4d54-4899-9b87-2a2b823fe7d1)
 
 ➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖ <br/>
 ➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖ <br/>
