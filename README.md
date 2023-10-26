@@ -1,6 +1,8 @@
 # 💚 What is Backend ?
 
 ## 💙 Internet
+![](https://github.com/parthmern/Backend/blob/42a7c827672bc0f9c48228001ce982771a6795cf/Backend-TopicWise/z-images-extra/main/BackEnd_Development__Pure_Basics_I_with_anno%20(1)%20(1)_page-0003.jpg)
+
 ➔ Like i have smartphone and i am sending "hii" msg to anyone then what happend here ?? <br/>
 ➔ it converts into *data packets* which are invisible for human and they go to the nearest tower / ISP <br/>
 ➔ Then tower receive data packets and convert them into *electrical signals*  <br/>
@@ -25,6 +27,9 @@
 ➔ computer + programmed + connects with internet = server  <br/>
 ➔ Client-server architecture = client jo request send karta hai and Server jo response bhejta hai <br/>
 ➔ Serverroom has just many CPUs <br/>
+
+![img](https://github.com/parthmern/Backend/blob/42a7c827672bc0f9c48228001ce982771a6795cf/Backend-TopicWise/z-images-extra/main/BackEnd_Development__Pure_Basics_I_with_anno%20(1)%20(1)_page-0004.jpg)
+
 
 ## ❤️ http and https
 ➔ hyper text transfer protocol / secured <br/>
@@ -254,6 +259,8 @@ const {xxFunc} = require("./config");
 <br/>
 
 # 🌈 Chapter 3 - Express JS
+![expressJswhatis](https://github.com/parthmern/Backend/blob/42a7c827672bc0f9c48228001ce982771a6795cf/Backend-TopicWise/z-images-extra/main/BackEnd_Development__Pure_Basics_I_with_anno%20(1)%20(1)_page-0006.jpg)
+
 ➔ ExpressJS is de-facto Node framework - and used in most Node applications which are used as web server.<br/>
 ➔ You can install express `npm install express` <br/>
 <br/>
@@ -279,13 +286,24 @@ try {
 ## 💜 create expres server [chatGpt](https://chat.openai.com/share/2a18d381-58b8-4c64-9d77-71d5e01b3f03) 
 
 ```
+// import express
 const express = require("express");
+// create APP or SERVER
 const server = express();
 
-server.listen(3030,()=>{
-  console.log("server start on 3030 port");
-});
+// res
+server.get("/", (req, res)=>{
+    res.send("HELLO WORLD");
+})
+
+// server ko listen karwa rahe particular port par
+// listen matalb jab server k saath communication hoga tab wo RESPONSE send kr dega
+const PORT = 3000;   // packets me port bhi send hota hai
+server.listen(PORT, ()=>{
+    console.log("server started at 3000 port");
+})
 ```
+
 
 ➔ Response methods (res is our response objects)
 ```
@@ -334,6 +352,9 @@ server.patch("/",(req, res)=>{
 })
 ```
 ## 💚 Middleware
+
+![](https://github.com/parthmern/Backend/blob/42a7c827672bc0f9c48228001ce982771a6795cf/Backend-TopicWise/z-images-extra/main/BackEnd_Development__Pure_Basics_I_with_anno%20(1)%20(1)_page-0010.jpg)
+
 ➔ Middleware - Modifies the request before it reaches the next middleware or endpoints. <br/>
 ➔ Sequence of middleware is very important, as first middleware is first traversed by request. <br/>
 
@@ -527,7 +548,7 @@ server.use(express.json());
 // server.use(morgan('default'));
 server.use(express.static('public'));
 
-// 🔥 product router
+// 🔥⭕️ product router -- EXPRESS.ROUTER -- MOUNTING 💯💯
 const productRouter = express.Router();
 server.use("/", productRouter);
 
@@ -654,6 +675,12 @@ server.listen(3000,()=>{
 })
 
 ```
+
+![](https://github.com/parthmern/Backend/blob/42a7c827672bc0f9c48228001ce982771a6795cf/Backend-TopicWise/z-images-extra/main/BackEnd_Development__Pure_Basics_I_with_anno%20(1)%20(1)_page-0012.jpg)
+
+![](https://github.com/parthmern/Backend/blob/42a7c827672bc0f9c48228001ce982771a6795cf/Backend-TopicWise/z-images-extra/main/BackEnd_Development__Pure_Basics_I_with_anno%20(1)%20(1)_page-0018.jpg)
+
+❌Folder structure below
 
 ### ❌❌ ✅ IMP to understand folder structure -- [link](https://github.com/parthmern/Web-Development-with-CodeHelp/tree/1370d9fb40bdaa23938c34e6f59f9e1a46d2671b/11_Backend%20Development%20%2B%20Express%20-%20I/BD-%20Class%202%20again-%20folderStructureImportant)
 
