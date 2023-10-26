@@ -28,9 +28,6 @@
 ➔ Client-server architecture = client jo request send karta hai and Server jo response bhejta hai <br/>
 ➔ Serverroom has just many CPUs <br/>
 
-![img](https://github.com/parthmern/Backend/blob/42a7c827672bc0f9c48228001ce982771a6795cf/Backend-TopicWise/z-images-extra/main/BackEnd_Development__Pure_Basics_I_with_anno%20(1)%20(1)_page-0004.jpg)
-
-
 ## ❤️ http and https
 ➔ hyper text transfer protocol / secured <br/>
 ➔ protocol hai jiske basis par internet surf karne ki aazadi milti hai - data ka aana jaana iski wajah se ho raha hai <br/>
@@ -169,6 +166,8 @@ console.log(module);    // OP => { sum: [Function: sum] }
 console.log(module.sum(4,5)); // OP => 9
 ```
 
+![exportingWays](https://github.com/parthmern/Backend/blob/42a7c827672bc0f9c48228001ce982771a6795cf/Backend-TopicWise/z-images-extra/main/BackEnd_Development__Pure_Basics_I_with_anno%20(1)%20(1)_page-0022.jpg)
+
 ➔ 💤 [Es6 type import export -chatGPT](https://chat.openai.com/share/796432e7-43ce-4ca8-aa4a-710d3e98cff8) <br/>
 ➔ ⚠️ IMP == import export for one and more than one fucntion - [chatGpt](https://chat.openai.com/share/e2a00a93-710f-4544-b6ff-edbf5def141b) <br/>
 *- iisme aagar ek function ko he hum export karte hai toh import k time par hum us function ko directly access kar sakte hai tab hame "varName.exportedFunctionName" meaning "." ka use NAHII karna padta hai* <br/>
@@ -236,6 +235,8 @@ const {xxFunc} = require("./config");
 
 ➔ *here client send REQUEST(req) to the server and server gives RESPONSE(res)* <br/>
 ➔ *but server can only understand HTTP protocol as language* <br/>
+
+![img](https://github.com/parthmern/Backend/blob/42a7c827672bc0f9c48228001ce982771a6795cf/Backend-TopicWise/z-images-extra/main/BackEnd_Development__Pure_Basics_I_with_anno%20(1)%20(1)_page-0004.jpg)
 
 🔥 **HTTP requests**  <br/>
 ➔ Type of Request :: GET, POST, PUT, DELETE etc.  <br/>
@@ -768,7 +769,7 @@ db.< collectionName >.deleteOne( filterObject )
  <br/>
 
 
-➔ 🔆 cursor in query
+➔ 🔆 **cursor** in query
 ```
 db.collection_name.find({
     $or: [ 
@@ -836,6 +837,8 @@ mongoose.connect('mongodb://127.0.0.1:27017/testDb',{
 
 // here testDb is db name that we have created in the mongodb compass
 ```
+
+![schema-model-doc-collection](https://github.com/parthmern/Backend/blob/758431e70eacda51435b06131264f4b2b6b02380/Backend-TopicWise/z-images-extra/main/BackEnd_Development__Pure_Basics_I_with_anno%20(1)%20(1)_page-0023.jpg)
 
 ✔️ **Schema** <br/>
 ➔ description of data <br/>
@@ -982,11 +985,14 @@ server.delete("/task/:name",function(req,res){
 
 <br/>
 
+![](https://github.com/parthmern/Backend/blob/758431e70eacda51435b06131264f4b2b6b02380/Backend-TopicWise/z-images-extra/main/BackEnd_Development__Pure_Basics_I_with_anno%20(1)%20(1)_page-0029.jpg)
+
 🌌 [summarized notes by coderDost](https://github.com/coderdost/full-stack-dev-2023/tree/main#-chapter-notes--6) 
 
 <br/>
 
-✅♻️ **Take referance of one model to another model** -- [video link](https://youtu.be/VuSt5-AwL8Y?si=hsgv2KyyuN7o0tWC)
+✅♻️ **Take referance of one model to another model** -- [⚡️ video link](https://youtu.be/VuSt5-AwL8Y?si=hsgv2KyyuN7o0tWC)
+
 ```
 // in POSTMODEL.JS in postSchema
 
@@ -1009,6 +1015,8 @@ comments : [{
 // here COMMENT MODEL is referance
 // and comments type will be String
 ```
+
+![](https://github.com/parthmern/Backend/blob/758431e70eacda51435b06131264f4b2b6b02380/Backend-TopicWise/z-images-extra/main/BackEnd_Development__Pure_Basics_I_with_anno%20(1)%20(1)_page-0030.jpg)
 
 <br/>
 
@@ -1077,3 +1085,14 @@ const cors = require('cors');
 server.use(cors())
 ```
 ➔ ♻️ using axios all crud ops with db- [chatgpt](https://chat.openai.com/share/e01c7323-af08-4c3d-89c8-6c8552fac811) <br/>
+
+
+
+
+➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖ <br/>
+➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖ <br/>
+➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖ <br/>
+➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖ <br/>
+➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖ <br/>
+➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖ <br/>
+💚🍀 [🔥 IMP PDF - pure basics of BD ](https://drive.google.com/file/d/1PE8CtHa9tqSQeRBhjHvkHHX6MLgP2Pvu/view?usp=sharing)
