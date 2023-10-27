@@ -798,7 +798,21 @@ db.< collectionName >.find( filterObject, projectionObject )
 ➔ Hostname is Database server address - like `localhost` or `db.xy.com` . In mongoDB hostname generally uses mongodb protocol to connect. So URLs are generally are of shape : `mongodb://localhost:27017` 
 
 ## 💜 MONGO ATLAS CLOUD SETUP
-➔ [setUp-video](https://youtu.be/4vtFY_ijpKs?si=lVPzudFo72LHMeap)
+➔ [setUp-video](https://youtu.be/4vtFY_ijpKs?si=lVPzudFo72LHMeap) <br/> 
+➔ mongoDB atlas login
+➔ top left -> drop down -> new project
+➔ enter project name and create project
+➔ build database clicked here
+➔ select M0 plan which is marked as free and select Mumbai as region
+➔ click create
+➔ save username and password in notepad -> click create
+➔ click finish and close
+➔ on db click connect
+➔ click compass
+➔ copy connecting string and replace  <password> with your own that you have pased in notepad
+` "mongodb+srv://pptl8685:<password>@cluster0.ehycfhl.mongodb.net/<newDbName>" `  <br/>
+
+➔ you can also connect this cloud DB with your mongoCompass app - just open app and there is a box where you can replace the "mongodb://localhost:27017" with the above atlas generated link which must have password and the newDbName and then click on connect  <br/>
 
 ## 💙 Enviroment Variable
 ➔ To use environment variable we can use a npm package called dotenv which will create new **process.env** variables.  <br/>
@@ -918,6 +932,10 @@ const post = new Post({
             });
 const savedPost = await post.save();
 
+//================================
+const {title,desc} = req.body ;
+const response = await Todo.create( {title,desc} );
+
 ```
 
  <br/>
@@ -964,7 +982,7 @@ server.put("/task/:name",function(req,res){
 ```
 
 server.put("/task/:name",function(req,res){
-    Task.findOneAndUpdate({name:req.params.name},{name:'YouStart'},,{new:true},function(err,doc){
+    Task.findOneAndUpdate({name:req.params.name},{name:'YouStart'},{new:true},function(err,doc){
         console.log(doc)  // this will contain db object
     })
 })
@@ -1085,8 +1103,28 @@ const cors = require('cors');
 server.use(cors())
 ```
 ➔ ♻️ using axios all crud ops with db- [chatgpt](https://chat.openai.com/share/e01c7323-af08-4c3d-89c8-6c8552fac811) <br/>
+➔ ♻️ using fetchApi all crud ops - [chatGpt](https://chat.openai.com/share/9459756c-96ac-4a4b-946b-e9d320427226)
 
+```
+const getAllData = async () => {
+    try {
+      const getPeople = await fetch(
+        `${process.env.REACT_APP_BASE_URL}/getallUsers`,
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
 
+      const res = await getPeople.json();
+      setEmpData(res);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+```
 
 
 ➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖ <br/>
