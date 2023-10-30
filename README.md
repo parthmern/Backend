@@ -1152,7 +1152,7 @@ const getAllData = async () => {
 
 ➔ 💙 **bcrypt** for password encryption - [chatGpt](https://chat.openai.com/share/b79dc5c4-59e5-49ce-bb94-ce47b8277d01)
 ```
-const bcrypt = require("bcryptjs");            // bcrypt is not installing so used bcryptjs insted bcrypt -- so run npm i bcryptjs
+const bcrypt = require("bcryptjs");            //🎯 bcrypt is not installing so used bcryptjs insted bcrypt -- so run npm i bcryptjs
 const User = require("../models/User");
 
 // signup route  handler
