@@ -284,7 +284,7 @@ try {
 }
 
 ```
-## 💜 create expres server [chatGpt](https://chat.openai.com/share/2a18d381-58b8-4c64-9d77-71d5e01b3f03) 
+## 💜 create express server [chatGpt](https://chat.openai.com/share/2a18d381-58b8-4c64-9d77-71d5e01b3f03) 
 
 ```
 // import express
@@ -814,6 +814,8 @@ db.< collectionName >.find( filterObject, projectionObject )
 
 ➔ you can also connect this cloud DB with your mongoCompass app - just open app and there is a box where you can replace the "mongodb://localhost:27017" with the above atlas generated link which must have password and the newDbName and then click on connect  <br/>
 
+➔ 📕 ERROR solution - **ip change** ho jayegi to connect nhi hoga compass se toh uske liye ATLAS WEB open kro then `security -> network access -> add current IP ` to solve the error
+
 ## 💙 Enviroment Variable
 ➔ To use environment variable we can use a npm package called dotenv which will create new **process.env** variables.  <br/>
 ➔ Install dotenv using `npm install dotenv`  <br/> 
@@ -884,7 +886,11 @@ const userSchema = new Schema({
   email: { type: String, required: true },
   age: { type: Number, min:[18, "error that below 18"], max:[50,"eroor that above 50"] },
   createdAt : {type : Date, required : true, default : Date.now() },                     // Date.now() wala 
+  roles : { type : String, enum : ["Admin", "Student", "Visitor"] }    // enum - in teeno me se he koi ek value ho sakti hai
+
 });
+
+
 ```
 
 ✔️ **Model** <br/>
@@ -1126,6 +1132,82 @@ const getAllData = async () => {
   };
 ```
 
+➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖ <br/>
+➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖ <br/>
+<br/>
+
+# 🌈 Chapter 11 - AuntN- authentication  and AuthZ-authorization 
+➔ authn has to do with identity, or who someone is ( identity verification ) <br/>
+➔ while authz has to do with permissions, or what someone is allowed to do ( access rights and permissions ) <br/>
+
+➔ Ex. *like i have website in which i have 3 Ui which are silver, gold, platinum so here if user loggedin when the process of identity verification comes, then it calls authentication and then i have to show the particular Ui to the loggedin user which is authorization* ==> `expalined in details below` <br/> 
+➔ **Authentication (Authn)**: When a user logs into your website, they provide their username and password or some other form of identity verification. This process confirms their identity, ensuring they are who they claim to be.  <br/>
+➔ **Authorization (Authz)**: After authentication, you need to determine what the user is allowed to do or access within your website. In your case, you have three different levels of access: silver, gold, and platinum. This is where authorization comes into play. Depending on the user's identity and their access level, you decide which UI (silver, gold, or platinum) to show to the user. This is all about granting permissions based on their authenticated identity.  <br/>
+
+## 💛 JWT (JSON Web Tokens) and Cookies: 
+![](https://i.ibb.co/56nJtCM/photo-6195058350010514545-y.jpg)
+![](https://i.ibb.co/2yjxZv0/photo-6195058350010514546-y.jpg)
+
+➔ [JWT website](https://jwt.io/)
+
+➔ 💙 **bcrypt** for password encryption - [chatGpt](https://chat.openai.com/share/b79dc5c4-59e5-49ce-bb94-ce47b8277d01)
+```
+const bcrypt = require("bcryptjs");            // bcrypt is not installing so used bcryptjs insted bcrypt -- so run npm i bcryptjs
+const User = require("../models/User");
+
+// signup route  handler
+exports.signup = async (req, res) =>{
+    try{
+        // get data
+        const {name, email, password, role} = req.body ;
+
+        // if user already exist
+        const existingUser = await User.findOne({email});
+
+        if(existingUser){
+            return res.status(400).json({
+                success : false ,
+                message : "user/email already exist" ,
+            })
+        }
+
+        
+        let hasedPassword ;
+        try{
+            // password encryption
+            // secure password using BCRYPT = bcrypt.hash(<data>, <no of rounds>)
+            hasedPassword = await bcrypt.hash(password, 10);
+        }
+
+        catch(error){
+            return res.status(400).json(
+                {
+                    success : false ,
+                    message : "error in hasing password" ,
+                }
+            )
+        }
+
+        // create user
+        const user = await User.create({name, email, password, role});
+
+        return(
+            res.status(200).json(
+                {
+                    success : true ,
+                    message : `user created successfully - ${user}`
+                }
+            )
+        )
+
+    }
+
+    catch(error){
+       // something
+    }
+    
+}
+```
 
 ➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖ <br/>
 ➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖ <br/>
