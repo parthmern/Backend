@@ -1214,7 +1214,7 @@ exports.signup = async (req, res) =>{
 
 🔥 JWT - [chatGpt](https://chat.openai.com/share/3d82e78e-c0e8-419a-9219-de80e00044f9) <br/>
 
-
+## 💚🎯 AUTH APP IMP - [codelink](https://github.com/parthmern/Web-Development-with-CodeHelp/tree/dbd7d48ac05a5afe11ec2c2cdf27c1a0c53f4b4a/12_Backend%20Development%20%2B%20Express%20-%20II/02_Class-02-AuthN-%26-AuthZ-(authapp)/authapp)
 
 
 ➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖ <br/>
