@@ -1148,6 +1148,9 @@ const getAllData = async () => {
 ![](https://i.ibb.co/56nJtCM/photo-6195058350010514545-y.jpg)
 ![](https://i.ibb.co/2yjxZv0/photo-6195058350010514546-y.jpg)
 
+
+➔ Hashing VS encryption-decryption - [chatGpt](https://chat.openai.com/share/02e30484-f696-4b7b-9c51-92d8453fd880) <br/>
+
 ➔ [JWT website](https://jwt.io/)
 
 ➔ 💙 **bcrypt** for password encryption - [chatGpt](https://chat.openai.com/share/b79dc5c4-59e5-49ce-bb94-ce47b8277d01)
@@ -1172,11 +1175,11 @@ exports.signup = async (req, res) =>{
         }
 
         
-        let hasedPassword ;
+        let hashedPassword ;
         try{
             // password encryption
             // secure password using BCRYPT = bcrypt.hash(<data>, <no of rounds>)
-            hasedPassword = await bcrypt.hash(password, 10);
+            hashedPassword = await bcrypt.hash(password, 10);
         }
 
         catch(error){
@@ -1189,7 +1192,7 @@ exports.signup = async (req, res) =>{
         }
 
         // create user
-        const user = await User.create({name, email, password, role});
+        const user = await User.create({name, email, password:hashedPassword, role});
 
         return(
             res.status(200).json(
@@ -1208,6 +1211,11 @@ exports.signup = async (req, res) =>{
     
 }
 ```
+
+🔥 JWT - [chatGpt](https://chat.openai.com/share/3d82e78e-c0e8-419a-9219-de80e00044f9) <br/>
+
+
+
 
 ➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖ <br/>
 ➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖ <br/>
