@@ -1213,8 +1213,9 @@ exports.signup = async (req, res) =>{
 ```
 
 🔥 JWT - [chatGpt](https://chat.openai.com/share/3d82e78e-c0e8-419a-9219-de80e00044f9) <br/>
+🔥 Cookie Parser middleWare = [chatGpt](https://chat.openai.com/share/58aa8155-2225-4e6a-b2bc-d43dfb0eddda)
 
-## 💚🎯 AUTH APP IMP - [codelink](https://github.com/parthmern/Web-Development-with-CodeHelp/tree/dbd7d48ac05a5afe11ec2c2cdf27c1a0c53f4b4a/12_Backend%20Development%20%2B%20Express%20-%20II/02_Class-02-AuthN-%26-AuthZ-(authapp)/authapp)
+## 💚🎯 AUTH APP IMP - [codelink](https://github.com/parthmern/Web-Development-with-CodeHelp/tree/d512d38193a8fb172f66745624f0ecc4b2966665/12_Backend%20Development%20%2B%20Express%20-%20II/03_Class-03-AuthN-%26-AuthZ-(authapp)/authapp)
 
 
 ➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖ <br/>
