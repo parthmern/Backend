@@ -1220,6 +1220,17 @@ exports.signup = async (req, res) =>{
 
 ➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖ <br/>
 ➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖ <br/>
+<br/>
+
+# 🌈 Chapter 12 - File upload app
+➔ Cloudinary - cloud based media management service where you can store media and you can access it through secured link. <br/>
+➔ [chatGpt](https://chat.openai.com/share/9858d04f-43d3-4d43-849d-cac0ac09876a) <br/>
+➔ How to get cloudinary api keys ? -- first go to the website named "cloudinary" then signup then go to `setting` ( bottom left ) then go to `access key` where you can find `apiKey` and `apiSecret` and frm dashboard you can get everything <br/>
+➔ express-file upload middleware- middleware for uploading files on express server - [link](https://www.npmjs.com/package/express-fileupload)   <br/>
+➔ multer is also same for fileUpload  <br/>
+
+➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖ <br/>
+➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖ <br/>
 ➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖ <br/>
 ➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖ <br/>
 ➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖ <br/>
