@@ -1225,9 +1225,128 @@ exports.signup = async (req, res) =>{
 # 🌈 Chapter 12 - File upload app
 ➔ Cloudinary - cloud based media management service where you can store media and you can access it through secured link. <br/>
 ➔ [chatGpt](https://chat.openai.com/share/9858d04f-43d3-4d43-849d-cac0ac09876a) <br/>
-➔ How to get cloudinary api keys ? -- first go to the website named "cloudinary" then signup then go to `setting` ( bottom left ) then go to `access key` where you can find `apiKey` and `apiSecret` and frm dashboard you can get everything <br/>
+➔ How to get cloudinary api keys ? -- first go to the website named "cloudinary" then signup then go to `setting` ( bottom left ) then go to `access key` where you can find `apiKey` and `apiSecret` and from dashboard you can get everything <br/>
+
+```
+// 📂 config > cloudinary
+const cloudinary = require("cloudinary").v2 ;
+
+require("dotenv").config();
+
+exports.cloudinaryConnect = () =>{
+    try{
+        cloudinary.config({
+            cloud_name: process.env.CLOUD_NAME,
+            api_key: process.env.API_KEY,
+            api_secret: process.env.API_SECRET,
+          });
+        
+        console.log("clodinary connection successful");
+    }
+    catch(error){
+        console.log("error in cloudinary connection",error);
+    }
+}
+
+// 📂 index.js
+// cloudinary connecttion
+const cloudinary = require("./config/cloudinary");
+cloudinary.cloudinaryConnect();
+```
+
 ➔ express-file upload middleware- middleware for uploading files on express server - [link](https://www.npmjs.com/package/express-fileupload)   <br/>
-➔ multer is also same for fileUpload  <br/>
+```
+// 📂 index.js
+
+// file upload middleware - middleware for uploading files on server
+const fileupload = require("express-fileupload");
+app.use(fileupload({
+    useTempFiles : true,
+    tempFileDir : '/tmp/'
+}));
+```
+➔ another fileUpload middleware == multer is also same for fileUpload  <br/>
+```
+// 📂 index.js
+
+const multer = require('multer');
+// Use Multer middleware for handling form data
+const upload = multer();
+app.use(upload.any());
+```
+
+<br/>
+<br/>
+
+
+➔ then 
+```
+// 📂 in controller
+
+const cloudinary = require("cloudinary").v2 ;
+
+//=====================================================
+        //⚡️ getting imageFile 
+        // here "imageFile" is key 
+        const file = req.files.imageFile ;
+        console.log(file);
+
+        // 🔥 getting imageFile extension
+        const fileType = file.name.split(".")[1].toLowerCase() ;
+        console.log("filetype==>", fileType);
+
+        // 🌈 validation on img types -- validation on data (file type is supported or not)
+        async function checkValidation (){
+            const supportedTypes = ["jpg", "jpeg", "png"];
+            if(await supportedTypes.includes(fileType)){
+                return true ;
+            }
+            else{
+                return false;
+            }
+        }
+
+        const validationAns = await checkValidation();
+        console.log("validationAns=>",validationAns);
+        if(!validationAns){
+            return(
+                res.json({
+                    success : false ,
+                    message : "not supported file types"
+                })
+            )
+        }
+
+        // 💥 uploading on cloudinary
+        async function uploadFileToCloudinary(file, folder, quality){
+            const options = {folder};
+        
+            if(quality){
+                options.quality = quality ;
+            }
+        
+            options.resource_type = "auto" ;
+
+            // upload to cloudinary
+            // file.tempFilePath -- means jab wo file client side se fetch hogi tab ek temporary path par save hogi express server k
+            // then wo cloudinary par upload hone k baad automatically delete ho jayega
+
+            return await cloudinary.uploader.upload(file.tempFilePath, options);
+        } 
+
+        
+        // upload to cloudinary (filefrom client, folder name of cloudinary, quality(10,20...,100))
+        // quality is extra you can avoid it
+        const uploaded = await uploadFileToCloudinary(file, "notesApp");
+        console.log("uploaded img URL ==>", uploaded.secure_url);
+
+```
+
+➔ **Test on PostMan** = *-- In the request body tab, select the "form-data" option. This is the option you'll use to upload files. -- Click on "Add key" to add a new key-value pair. -- Set the key to the name you want to use for the image file here "imageFile". -- Set the type of the value to "File" by using the dropdown menu. -- Choose the image file you want to upload by clicking on "Select Files." -- here you can also add other things like below img -*
+
+![](https://i.ibb.co/Dzc6BpQ/Screenshot-2023-11-13-233200.png)
+
+## 📌❤️ [imp project for fileUpload ** must understand](https://github.com/parthmern/Web-Development-with-CodeHelp/tree/f3393386f5cbf37f887c252eb21cbe250cd42aa2/13_Backend%20Developmentt%20%2B%20Intermediate%20Project%20-%20File%20handling/03_Class-03-(final)-File-Upload)
 
 ➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖ <br/>
 ➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖ <br/>
@@ -1235,4 +1354,16 @@ exports.signup = async (req, res) =>{
 ➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖ <br/>
 ➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖ <br/>
 ➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖ <br/>
+# 📛 Imp errors
+➔ postman's req is Undefined so here is solution
+```
+// FIRST -- middlewares ayenge
+app.use(express.json());
+
+// SECOND - then this
+const routes = require("./routes/router");
+app.use("/", routes);
+```
+➔ javascript Promises(.then/.catch ) VS Async Await EXPLAINED - [vidLink](https://youtu.be/li7FzDHYZpc?si=Ol5s0cGrgeQALt1J)
+
 💚🍀 [🔥 IMP PDF - pure basics of BD ](https://drive.google.com/file/d/1PE8CtHa9tqSQeRBhjHvkHHX6MLgP2Pvu/view?usp=sharing)
