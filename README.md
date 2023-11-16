@@ -1153,6 +1153,9 @@ const getAllData = async () => {
 
 ➔ [JWT website](https://jwt.io/)
 
+
+<br/>
+
 ➔ 💙 **bcrypt** for password encryption - [chatGpt](https://chat.openai.com/share/b79dc5c4-59e5-49ce-bb94-ce47b8277d01)
 ```
 const bcrypt = require("bcryptjs");            //🎯 bcrypt is not installing so used bcryptjs insted bcrypt -- so run npm i bcryptjs
@@ -1212,11 +1215,130 @@ exports.signup = async (req, res) =>{
 }
 ```
 
-🔥 JWT - [chatGpt](https://chat.openai.com/share/3d82e78e-c0e8-419a-9219-de80e00044f9) <br/>
-🔥 Cookie Parser middleWare = [chatGpt](https://chat.openai.com/share/58aa8155-2225-4e6a-b2bc-d43dfb0eddda)
+<br/>
+
+➔💜🔥 **JWT - jsonwebtoken** - [chatGpt](https://chat.openai.com/share/3d82e78e-c0e8-419a-9219-de80e00044f9) <br/>
+```
+//LOGIN
+
+const bcrypt = require("bcryptjs"); 
+const jwt = require("jsonwebtoken");  //  npm i jsonwebtoken
+
+
+exports.login = async (req, res) =>{
+    try{
+        // data fetch
+        const {email, password} = req.body ;
+
+        // validation  -- email is empty or undefined (falsy), password is empty or undefined (falsy),
+        if(!email || !password){
+            return(
+                res.status(400).json(
+                    {
+                        success : false ,
+                        message : "please fill all the details ",
+                    }
+                )
+            )
+        };
+
+        // check for already registered user
+        const user = await User.findOne({email});
+        // if user is not registered then
+        if(!user){
+            return(
+                res.status(401).json(
+                    {
+                        success : false ,
+                        message : "user is not registered"
+                    }
+                )
+            )
+        }
+
+        // verify password and generate JWT token
+        // bcrypt.compare(<real>, <hashed>) -- comparing
+        if(await bcrypt.compare(password, user.password)){
+
+            const payload = {
+                email : user.email ,
+                id : user._id ,
+                role : user.role 
+            }
+
+            // if password matched then 
+            // JWT me payload means "DATA" and secreateKey
+            let token = jwt.sign(payload,
+                                 process.env.JWT_SECRET,
+                                 {
+                                    expiresIn : "2h"
+                                 }
+                                );
+
+            // user jo obj hai uske andar kar rahe hai niche ki 2line wo DB me change nhi ho rha
+            // user.token = token ;
+            // user.password = undefined ;
+
+            // ye upar ki 2 line work nhi kar rhi so  -- user ko plain-OBJECT me convert kar rahe hai 
+            user = user.toObject();
+            user.token = token ;
+            user.password = undefined ;
+
+            // cookie("<cookieName>", <jwtToken or Value>, options)
+            const options = {
+                expires : new Date(Date.now() + 3 * 24 * 60 * 60 * 1000),
+                httpOnly : true,
+            }
+            res.cookie("token", token, options).status(200).json(
+                {
+                    success : true ,
+                    token , 
+                    user ,
+                    message : "user logged in successfully" ,
+                }
+            )
+        }
+        else{
+            return(
+                res.status(403).json(
+                    {
+                        success : false ,
+                        message : "password incorrect" ,
+                    }
+                )
+            )
+        }
+
+
+    }
+    catch(error){
+        // error
+    }
+}
+```
+
+<br/>
+
+
+➔🤎 🔥 Cookie Parser middleWare = [chatGpt](https://chat.openai.com/share/58aa8155-2225-4e6a-b2bc-d43dfb0eddda)
+```
+// 📂 index.js
+
+// cookie parser - 
+const cookieParser = require("cookie-parser");
+app.use(cookieParser);
+```
+
+<br />
+
 
 ## 💚🎯 AUTH APP IMP - [codelink](https://github.com/parthmern/Web-Development-with-CodeHelp/tree/d512d38193a8fb172f66745624f0ecc4b2966665/12_Backend%20Development%20%2B%20Express%20-%20II/03_Class-03-AuthN-%26-AuthZ-(authapp)/authapp)
 
+<br />
+
+## 💙🎯 for reference take this code - [chatGpt](https://chat.openai.com/share/ffefc5a9-2570-4eb5-a8d7-566e8f289a9a)
+
+<br />
 
 ➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖ <br/>
 ➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖ <br/>
@@ -1347,6 +1469,12 @@ const cloudinary = require("cloudinary").v2 ;
 ![](https://i.ibb.co/Dzc6BpQ/Screenshot-2023-11-13-233200.png)
 
 ## 📌❤️ [imp project for fileUpload ** must understand](https://github.com/parthmern/Web-Development-with-CodeHelp/tree/f3393386f5cbf37f887c252eb21cbe250cd42aa2/13_Backend%20Developmentt%20%2B%20Intermediate%20Project%20-%20File%20handling/03_Class-03-(final)-File-Upload)
+
+
+➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖ <br/>
+➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖ <br/>
+<br/>
+
 
 ➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖ <br/>
 ➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖ <br/>
