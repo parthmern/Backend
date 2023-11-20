@@ -1327,6 +1327,11 @@ exports.login = async (req, res) =>{
 // cookie parser - 
 const cookieParser = require("cookie-parser");
 app.use(cookieParser);
+
+// 🎯 CORS error
+const cors = require('cors');
+app.use( cors({ origin: "*",}) );
+
 ```
 
 <br />
