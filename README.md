@@ -1497,6 +1497,39 @@ app.use(express.json());
 const routes = require("./routes/router");
 app.use("/", routes);
 ```
+
+<br/>
+<br/>
+
 ➔ javascript Promises(.then/.catch ) VS Async Await EXPLAINED - [vidLink](https://youtu.be/li7FzDHYZpc?si=Ol5s0cGrgeQALt1J)
+
+<br/>
+<br/>
+
+➔ we cannot send DATA in GET method of axios 
+```
+  // `data` is the data to be sent as the request body
+  // Only applicable for request methods 'PUT', 'POST', and 'PATCH'
+```
+so what to do -- avoid the usage of `req.body` in backend and use `req.query`
+
+```
+// FRONTEND CODE of AXIOS method with GET with req.query send
+try {
+    const res = await axios.get(`${backendUrl}/oneNote`, {
+        params: {
+            id: id
+        }
+    });
+    console.log(res);
+} catch(error) {
+    console.log("error =>", error);
+}
+
+// ======================================
+// BACKEND code to get something from req.query
+const { id } = req.query;
+
+```
 
 💚🍀 [🔥 IMP PDF - pure basics of BD ](https://drive.google.com/file/d/1PE8CtHa9tqSQeRBhjHvkHHX6MLgP2Pvu/view?usp=sharing)
