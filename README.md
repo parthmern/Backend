@@ -994,7 +994,20 @@ server.put("/task/:name",function(req,res){
 })
 
 ```
+➔ updating
+```
+const updatedNote = await Note.findByIdAndUpdate(
+                id,
+                {
+                    title : title,
+                    desc : desc ,
+                    img : uploaded.secure_url,
+                },
+                { new: true }    // To return the updated document
+            );
 
+// here { new: true }  == To return the updated document
+```
  <br/>
 
 💫 **Delete - existing objects**  <br/>
