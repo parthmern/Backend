@@ -166,6 +166,9 @@ console.log(module);    // OP => { sum: [Function: sum] }
 console.log(module.sum(4,5)); // OP => 9
 ```
 
+![image](https://github.com/parthmern/Backend/assets/125397720/681467ea-35e1-4b5f-b7fa-5e5c0c6bb5b9)
+
+
 ![exportingWays](https://github.com/parthmern/Backend/blob/42a7c827672bc0f9c48228001ce982771a6795cf/Backend-TopicWise/z-images-extra/main/BackEnd_Development__Pure_Basics_I_with_anno%20(1)%20(1)_page-0022.jpg)
 
 ➔ 💤 [Es6 type import export -chatGPT](https://chat.openai.com/share/796432e7-43ce-4ca8-aa4a-710d3e98cff8) <br/>
