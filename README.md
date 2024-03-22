@@ -1548,4 +1548,8 @@ const { id } = req.query;
 
 ```
 
+- [differance between nodejs and expressjs](https://youtu.be/x7IizHuytRU?si=ZyL0UNQXwNAdVkpx)
+- [gfg differance between nodejs and expressjs](https://www.geeksforgeeks.org/node-js-vs-express-js/)
+- 
+
 💚🍀 [🔥 IMP PDF - pure basics of BD ](https://drive.google.com/file/d/1PE8CtHa9tqSQeRBhjHvkHHX6MLgP2Pvu/view?usp=sharing)
