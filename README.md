@@ -48,7 +48,7 @@
 ➔ `npm i express` to create nodeModule file <br/>
 ➔ then create `server.js` file
 
-```
+```javascript
 // 📂 server.js
 
 // 1) server instantiate
@@ -67,7 +67,7 @@ app.listen(3000, ()=>{
 
 ➔ Routes
 
-```
+```javascript
 const bodyParser = require('body-parser');   // used to parese req.body in express -> PUT or POST
 app.use(bodyParser.json() );   // specifically parse JSON data & add it to the request.Body object
 
@@ -95,7 +95,7 @@ app.post('/api/cars', (request,response)=>{
 ➔ in expressJs server data treats as object and in mongo data treat as document  <br/>
 ➔ `npm i mongoose` install
 
-```
+```javascript
 const mongoose = require('mongoose');
 mongoose.connect('mongodb://127.0.0.1:27017/testDb',{
     useNewurlParser : true,
@@ -131,7 +131,7 @@ mongoose.connect('mongodb://127.0.0.1:27017/testDb',{
 ➔ Modules are basic containers or functions in Node/JavaScript system. 1 file can be one module in Javascript.<br/>
 
 ➔ export 
-```
+```javascript
 // 📂 module.js
 
 function sum (a,b){
@@ -175,7 +175,7 @@ console.log(module.sum(4,5)); // OP => 9
 ➔ ⚠️ IMP == import export for one and more than one fucntion - [chatGpt](https://chat.openai.com/share/e2a00a93-710f-4544-b6ff-edbf5def141b) <br/>
 *- iisme aagar ek function ko he hum export karte hai toh import k time par hum us function ko directly access kar sakte hai tab hame "varName.exportedFunctionName" meaning "." ka use NAHII karna padta hai* <br/>
 *- agar ek se jyada function export kiye hai toh hame "." use karna padega jaise ki "varName.function1" and "varName.function2" like* <br/>
-```
+```javascript
 module.exports = xxFunc ;
 // here we can directly import
 const ImportedxxFunc = require("./config");
@@ -208,7 +208,7 @@ const {xxFunc} = require("./config");
 🔥 **Dev dependancy** - ye sirf development time k liye hai -- ye server k main code se realted nhii hai <br/>
 ➔ ex. NODEMON is a package for running node server and track live changes to re-start again. <br/>
 ➔ `npm install nodemon --save-dev` installation of devdependency therefore --save-dev <br/>
-```
+```javascript
 // 📂 package.json
 ...
 
@@ -271,7 +271,7 @@ const {xxFunc} = require("./config");
 
 ## 🧡 about FS [what is filesystem- chatGpt](https://chat.openai.com/share/edfba47e-cb29-4e8b-9c79-9b692d895cde) <br/>
 
-```
+```javascript
 const fs = require('fs');
 
 const index = fs.readFileSync('anyFile.xtension', 'utf-8');
@@ -289,7 +289,7 @@ try {
 ```
 ## 💜 create express server [chatGpt](https://chat.openai.com/share/2a18d381-58b8-4c64-9d77-71d5e01b3f03) 
 
-```
+```javascript
 // import express
 const express = require("express");
 // create APP or SERVER
@@ -310,7 +310,7 @@ server.listen(PORT, ()=>{
 
 
 ➔ Response methods (res is our response objects)
-```
+```javascript
 server.get('/demo', (req, res) => {
 
     //res.send('Hello, Express as simple msg');     //  res.send()===> for sending html or txt
@@ -334,7 +334,7 @@ server.get('/demo', (req, res) => {
 
 ## 💛 HTTP Request Types we generally use 
 ➔ API / Endpoints / Routes are used inter-changeably but they are related to server paths. <br/>
-```
+```javascript
 server.get("/",(req, res)=>{
   res.json({type:"GET"});
 })
@@ -365,7 +365,7 @@ server.patch("/",(req, res)=>{
 ➔ [chatGpt read first](https://chat.openai.com/share/d11b014d-1463-49ca-bb13-750e3e5bfaae) <br/>
 
 1️⃣ Application level : server.use(middleware) for middleware
-```
+```javascript
 server.use((req, res, next) => {
   console.log('Middleware function executed.');
   next();
@@ -377,7 +377,7 @@ server.use((req, res, next) => {
 ```
 
 2️⃣ Router level : server.get('/', middleware, (req,res)=>{})
-```
+```javascript
 const middleware = (req,res,next) =>{
     // all conditions here
     if(condition){
@@ -408,7 +408,7 @@ router.get('/', (req, res) => {
 ```
 
 3️⃣ Built-in middleware - [chatGpt](https://chat.openai.com/share/eb5d170e-b0da-4e3f-9c11-f5a7d38fb295)
-```
+```javascript
 // Built-in middleware for JSON parsing and for parsing body data
 server.use(express.json());
 
@@ -417,7 +417,7 @@ server.use(express.static('public'));
 ```
 
 4️⃣ External Middle-wares / third party (ex. Morgon )
-```
+```javascript
 // npm i morgan
 
 const morgan = require('morgan');
@@ -447,14 +447,14 @@ server.use(morgan('dev'));   // here "dev" is predefined-method like
 ➔ here we are creating CRUD operation related apis  <br/>
 
 ➔  [why below 3 are needed - chatGpt ](https://chat.openai.com/share/3d3d5f38-3834-4ad6-998d-dd3189403522)
-```
+```javascript
 server.use(express.json()); // Needed to parse JSON data in incoming requests bcz nodeJs ko pata nhi chalta ki wo json data hai === "Content-Type", "application/json"
 server.use(morgan('default')); //  When a client makes an HTTP request to your server, morgan logs information like this = " GET /api/user 200 15.123 ms "
 server.use(express.static('public')); // Required to serve static files (e.g., HTML, CSS, JavaScript) to clients
 ```
 
 ## 💚 CRUD 
-```
+```javascript
 console.log("start");
 
 // create server
@@ -538,7 +538,7 @@ server.get("/product", getProductFunction );
 ➔ Controller - functions attached to routes for modifying request and sending responses. It's a link between the Model and View. <br/>
 
 ➔ without any folder/mvc the code is
-```
+```javascript
 console.log("start");
 
 // create server
@@ -604,7 +604,7 @@ productRouter
 ```
 
 ➔ ❄️ after MVC folder creation
-```
+```javascript
 // 📂 controller > productController.js
 
 exports.getProduct = (req,res)=>{
@@ -629,7 +629,7 @@ exports.deleteProduct = (req,res)=>{
 
 ```
 and
-```
+```javascript
 // 📂 routes > productRoutes.js
 
 // requirements
@@ -647,7 +647,7 @@ router
 exports.router = router ;
 ```
 and
-```
+```javascript
 // 📂 index.js
 
 console.log("start");
@@ -723,14 +723,14 @@ server.listen(3000,()=>{
 <br/> 
 
 ➔ Create Query (insertOne, insertMany) <br/>
-```
+```javascript
 db.<collectionName>.insertOne( newDocument )
 db.<collectionName>.insertMany( documentArray )
 ```
 
 
 ➔ Read Query (find, findOne) <br/>
-```
+```javascript
 db.< collectionName >.find( filterObject ) -- to read all docs
 db.< collectionName >.findOne( filterObject ) -- to read one document
 db.< collectionName >.countDocuments( filterObject ) -- shows total number of documents
@@ -744,7 +744,7 @@ db.< collectionName >.countDocuments( filterObject ) -- shows total number of do
 
 
 ➔ Update Query (updateOne) <br/>
-```
+```javascript
 db.< collectionName >.updateOne( filterObject, updateObject, options )
 
 // update Objects = { $set : {field: value}}
@@ -756,7 +756,7 @@ db.< collectionName >.updateOne( filterObject, updateObject, options )
 
 
 ➔ Delete Query (deleteOne, deleteMany) <br/>
-```
+```javascript
 db.< collectionName >.deleteOne( filterObject )
 ```
 
@@ -773,7 +773,7 @@ db.< collectionName >.deleteOne( filterObject )
 
 
 ➔ 🔆 **cursor** in query
-```
+```javascript
 db.collection_name.find({
     $or: [ 
             { price: {$gt: 100} },
@@ -791,7 +791,7 @@ db.collection_name.find({
 
 ➔ 🚀  Projection - <br/>
 - Only return selected fields while returning result documents. <br/>
-```
+```javascript
 db.< collectionName >.find( filterObject, projectionObject )
 
 // e.g. {name:1, age:1, id:0} - only show name and age and don't show id
@@ -837,7 +837,7 @@ db.< collectionName >.find( filterObject, projectionObject )
 ➔ Mongoose is a popular JavaScript library that is commonly used with Node.js to interact with MongoDB. <br/>
 ➔ `npm install mongoose` installation. <br/>
 ➔ connect mongoose
-```
+```javascript
 const mongoose = require('mongoose');
 
 mongoose.connect('mongodb://127.0.0.1:27017/testDb',{
@@ -864,7 +864,7 @@ mongoose.connect('mongodb://127.0.0.1:27017/testDb',{
 ➔ each collection have some configurations - [chatGpt](https://chat.openai.com/share/b8b5c3a3-168b-407c-b7ad-d20715761da7) <br/>
 ➔ schema means hum jaise sql me collumn name likh kar uski dataType define karte hai waise hee, idhar no-sql me hum create krte hai. <br/>
 
-```
+```javascript
 // schema 
 // OOP in js "new obj"
 
@@ -877,7 +877,7 @@ const productSchema = new Schema({
 ```
 ➔ DataTypes in schema - String, Number, Date, Boolean, Mixed, ObjectId, Array <br/>
 ➔ you can also put conditions in schema <br/>
-```
+```javascript
 age: { type: Number, default:18, min: 18, max: 65, required :true }
 // default value of Number is 18 and should be between 18-65, and can't be null or empty
 
@@ -898,7 +898,7 @@ const userSchema = new Schema({
 
 ✔️ **Model** <br/>
 ➔ Model are similar to classes, they create a Class from Schema. These classes(i.e Models) can be used to create each new database object. <br/>
-```
+```javascript
 // 📂 model > product.js
 const mongoose = require('mongoose');
 const { Schema } =  mongoose;
@@ -919,7 +919,7 @@ const Task = mongoose.model('Task', taskSchema);  //-- Task Model to create new 
 
 💫 **Create new objects/data in collection** <br/>
 ➔ To Create new obejct in database we can use `new` keyword and create an object from Model. We can use `save()` function to save the object in database. Unless, you call save function - the object remains in memory. If your collection not yet created in MongoDB, it will created with name of Model pluralized (e.g Task will make a collection named tasks) <br/>
-```
+```javascript
 
 server.post("/task",function(req,res){
     let task = new Task();             // here "new Task()" create a new task of model named Task
@@ -952,7 +952,7 @@ const response = await Todo.create( {title,desc} );
 💫 **Read objects** <br/>
 ➔ To read new obejcts from database, one can use `find` query or similar queries. `find` queries also contain some conditions which can restrict what kind of data objects you want to read from database. <br/>
 
-```
+```javascript
 server.get("/task/:name",function(req,res){
     task.findOne({name:req.params.name},function(err,doc){
         console.log(doc)  // this will contain db object
@@ -980,7 +980,7 @@ server.get("/tasks",function(req,res){
 - Updating only few values by setting their new values.
 
 ➔ First scenario is covered using this query. Here you are overwriting all properties and resulting object will only have `name` property.
-```
+```javascript
 server.put("/task/:name",function(req,res){
     Task.findOneAndReplace({name:req.params.name},{name:'YouStart'},{new:true},function(err,doc){
         console.log(doc)  // this will contain new db object
@@ -988,7 +988,7 @@ server.put("/task/:name",function(req,res){
 })
 ```
 ➔ Second scenario is covered using this query. Here you are only changing value of `name` property in existing object without changing other values in Object.
-```
+```javascript
 
 server.put("/task/:name",function(req,res){
     Task.findOneAndUpdate({name:req.params.name},{name:'YouStart'},{new:true},function(err,doc){
@@ -998,7 +998,7 @@ server.put("/task/:name",function(req,res){
 
 ```
 ➔ updating
-```
+```javascript
 const updatedNote = await Note.findByIdAndUpdate(
                 id,
                 {
@@ -1015,7 +1015,7 @@ const updatedNote = await Note.findByIdAndUpdate(
 
 💫 **Delete - existing objects**  <br/>
 ➔ To Delete existing object from database we need to first `find` an object from database and then `delete`. This might be considered as a combination of find and delete methods. <br/>
-```
+```javascript
 server.delete("/task/:name",function(req,res){
     Task.findOneAndDelete({name:req.params.name},function(err,doc){
         console.log(doc)  // this will contain deleted object object
@@ -1033,7 +1033,7 @@ server.delete("/task/:name",function(req,res){
 
 ✅♻️ **Take referance of one model to another model** -- [⚡️ video link](https://youtu.be/VuSt5-AwL8Y?si=hsgv2KyyuN7o0tWC)
 
-```
+```javascript
 // in POSTMODEL.JS in postSchema
 
 likes : [{
@@ -1062,7 +1062,7 @@ comments : [{
 
 ⚠️ **POPULATE -**  <br/>
 ➔ it gives the whole item insted of only ID
-```
+```javascript
 const updatedPost = await Post.findByIdAndUpdate(post, {$push : {comments : savedComment._id}}, {new: true})
                             .populate("comments") // populate the comments array with comment documents
                             .exec();
@@ -1120,14 +1120,14 @@ const updatedPost = await Post.findByIdAndUpdate(post, {$push : {comments : save
 ➔ we will use CORS package to allow cross origin request from React JS server to NodeJS server as they are on different hosts.  <br/>
 ➔ `npm install cors` <br/>
 ➔  to use cors <br/>
-```
+```javascript
 const cors = require('cors');
 server.use(cors())
 ```
 ➔ ♻️ using axios all crud ops with db- [chatgpt](https://chat.openai.com/share/e01c7323-af08-4c3d-89c8-6c8552fac811) <br/>
 ➔ ♻️ using fetchApi all crud ops - [chatGpt](https://chat.openai.com/share/9459756c-96ac-4a4b-946b-e9d320427226)
 
-```
+```javascript
 const getAllData = async () => {
     try {
       const getPeople = await fetch(
@@ -1173,7 +1173,7 @@ const getAllData = async () => {
 <br/>
 
 ➔ 💙 **bcrypt** for password encryption - [chatGpt](https://chat.openai.com/share/b79dc5c4-59e5-49ce-bb94-ce47b8277d01)
-```
+```javascript
 const bcrypt = require("bcryptjs");            //🎯 bcrypt is not installing so used bcryptjs insted bcrypt -- so run npm i bcryptjs
 const User = require("../models/User");
 
@@ -1234,7 +1234,7 @@ exports.signup = async (req, res) =>{
 <br/>
 
 ➔💜🔥 **JWT - jsonwebtoken** - [chatGpt](https://chat.openai.com/share/3d82e78e-c0e8-419a-9219-de80e00044f9) <br/>
-```
+```javascript
 //LOGIN
 
 const bcrypt = require("bcryptjs"); 
@@ -1337,7 +1337,7 @@ exports.login = async (req, res) =>{
 
 
 ➔🤎 🔥 Cookie Parser middleWare = [chatGpt](https://chat.openai.com/share/58aa8155-2225-4e6a-b2bc-d43dfb0eddda)
-```
+```javascript
 // 📂 index.js
 
 // cookie parser - 
@@ -1370,7 +1370,7 @@ app.use( cors({ origin: "*",}) );
 ➔ [chatGpt](https://chat.openai.com/share/9858d04f-43d3-4d43-849d-cac0ac09876a) <br/>
 ➔ How to get cloudinary api keys ? -- first go to the website named "cloudinary" then signup then go to `setting` ( bottom left ) then go to `access key` where you can find `apiKey` and `apiSecret` and from dashboard you can get everything <br/>
 
-```
+```javascript
 // 📂 config > cloudinary
 const cloudinary = require("cloudinary").v2 ;
 
@@ -1398,7 +1398,7 @@ cloudinary.cloudinaryConnect();
 ```
 
 ➔ express-file upload middleware- middleware for uploading files on express server - [link](https://www.npmjs.com/package/express-fileupload)   <br/>
-```
+```javascript
 // 📂 index.js
 
 // file upload middleware - middleware for uploading files on server
@@ -1409,7 +1409,7 @@ app.use(fileupload({
 }));
 ```
 ➔ another fileUpload middleware == multer is also same for fileUpload  <br/>
-```
+```javascript
 // 📂 index.js
 
 const multer = require('multer');
@@ -1423,7 +1423,7 @@ app.use(upload.any());
 
 
 ➔ then 
-```
+```javascript
 // 📂 in controller
 
 const cloudinary = require("cloudinary").v2 ;
@@ -1505,7 +1505,7 @@ const cloudinary = require("cloudinary").v2 ;
 ➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖ <br/>
 # 📛 Imp errors
 ➔ postman's req is Undefined so here is solution
-```
+```javascript
 // FIRST -- middlewares ayenge
 app.use(express.json());
 
@@ -1523,13 +1523,13 @@ app.use("/", routes);
 <br/>
 
 ➔ we cannot send DATA in GET method of axios 
-```
+```javascript
   // `data` is the data to be sent as the request body
   // Only applicable for request methods 'PUT', 'POST', and 'PATCH'
 ```
 so what to do -- avoid the usage of `req.body` in backend and use `req.query`
 
-```
+```javascript
 // FRONTEND CODE of AXIOS method with GET with req.query send
 try {
     const res = await axios.get(`${backendUrl}/oneNote`, {
