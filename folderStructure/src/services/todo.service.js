@@ -18,6 +18,15 @@ class TodoService {
         this.todoRepository.insert(todoText);
         
     }
+
+    getOneTodo(id) {
+        return this.todoRepository.get(id);
+    }
+
+    getAllTodos() {
+        console.log("getting all todos...");
+        return this.todoRepository.getAll();
+    }
     
 }
 
