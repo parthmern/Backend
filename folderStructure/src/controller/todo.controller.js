@@ -9,6 +9,8 @@ async function getTodos(req, res) {
 
     const response = await todoService.getAllTodos();
 
+    console.log("getting all todos...");
+
     return res.json({
         data: response
     })
@@ -17,6 +19,9 @@ async function getTodos(req, res) {
 async function createTodo(req, res) {
     const todoText = req.body.todoText;
     todoService.create(todoText);
+
+    console.log("creating todo ...");
+
     return res.json({
         data: 'New todo created'
     })

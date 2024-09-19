@@ -24,7 +24,7 @@ class TodoService {
     }
 
     getAllTodos() {
-        console.log("getting all todos...");
+        
         return this.todoRepository.getAll();
     }
     
