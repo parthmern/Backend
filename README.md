@@ -1335,6 +1335,9 @@ exports.login = async (req, res) =>{
 
 <br/>
 
+- cookies options **imp** - `https://projects.100xdevs.com/tracks/Auth/auth-5`
+
+  <br/>
 
 ➔🤎 🔥 Cookie Parser middleWare = [chatGpt](https://chat.openai.com/share/58aa8155-2225-4e6a-b2bc-d43dfb0eddda)
 ```javascript
